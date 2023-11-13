@@ -1,0 +1,11 @@
+{
+    "locale": {
+      "en": "English",
+      "ar": "Arabic"
+    },
+    "header": {
+      "home": "Home",
+      "about": "About us"
+    }
+
+  }
