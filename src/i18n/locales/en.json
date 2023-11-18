@@ -4,8 +4,40 @@
       "ar": "Arabic"
     },
     "header": {
+      "choose": "choose..",
+      "new_account": "Create new account",
       "home": "Home",
-      "about": "About us"
+      "about": "About us",
+      "get_ticket": "Get Your Ticket Online, Easy and Safely",
+      "choose_ticket": "Choose Your Ticket",
+      "getTicketSteps": "Get Your Tickets With Just 3 Steps",
+      "paraSteps": "Have a look at our popular reason. why you should choose you bus. Just a Bus and get a ticket for your great journey. !",
+      "firstStep": "Have a look at our popular reason. why you should choose you bus. Just a Bus and get a ticket for your great journey. !",
+      "secondStep": "Choose your origin, destination,Just a Bus for your great journey dates and search for buses.",
+      "thirdStep": "Choose your origin, destination,choose a Bus for your great journey dates and search for buses",
+      "search_ticket_bus": "Search Your Bus",
+      "choose_ticket_bus": "Choose The Ticket",
+      "pay_bill": "Pay Bill",
+      "From_City": "From City",
+      "To_City": "To City",
+      "Welcome_bus": "Welcome to Bus Booking ",
+      "signin_account": "Sign In your Account",
+      "phone" : "Phone Number",
+      "phone_message" : "Enter your phone",
+      "password" : "Password",
+      "password_message" : "Enter your password",
+      "remember_me" : "Remember me",
+      "forgot_password" : "Forgot Password ?",
+      "sign_in" : "Sign in",
+      "dont_have_Account" : "Don't have account ?",
+      "sign_up" : "Sign up",
+      "name" : "Name",
+      "gender" : "Gender",
+      "male" : "Male",
+      "female" : "Female",
+      "name_message" : "Enter your name"
+
+
     }
 
   }

@@ -1,16 +1,16 @@
 
 
 <template>
-  <section class="banner-section">
+  <section class="banner-section" >
     <div class="container">
       <div class="banner-wrapper">
         <div class="banner-content">
-          <h1 class="title">Get Your Ticket Online, Easy and Safely</h1>
+          <h1 class="title">{{t('header.get_ticket')}}</h1>
           <a href="tickets.html" class="cmn--btn">Get ticket now</a>
         </div>
         <div class="ticket-form-wrapper">
           <div class="ticket-header nav-tabs nav border-0">
-            <h4 class="title">Choose Your Ticket</h4>
+            <h4 class="title">{{t('header.choose_ticket')}}</h4>
           </div>
           <div class="tab-content">
             <div class="tab-pane fade show active" id="one-way">
@@ -20,7 +20,7 @@
                   <div class="form--group">
                     <i class="las la-location-arrow"></i>
                     <select class="form--control select2" name="pickup">
-                      <option value="">Pickup Point</option>
+                      <option value="">{{ t('header.From_City') }}</option>
                       <option value="1">Kansas</option>
                       <option value="2">Dallas</option>
                       <option value="3">Wichita</option>
@@ -33,7 +33,7 @@
                   <div class="form--group">
                     <i class="las la-map-marker"></i>
                     <select name="destination" class="form--control select2">
-                      <option value="">Dropping Point</option>
+                      <option value="">{{ t('header.To_City') }}</option>
                       <option value="1">Kansas</option>
                       <option value="2">Dallas</option>
                       <option value="3">Wichita</option>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-12">
                   <div class="form--group">
-                    <i class="las la-calendar-check"></i>
+                    <!-- <i class="las la-calendar-check"></i> -->
                     <input type="date" name="date_of_journey" class="form--control datepicker"
                       placeholder="Departure Date" autocomplete="off">
                   </div>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="shape">
-      <img src="@/assets/images/frontend/banner/bus.png" alt="bg">
+      <img src="@/assets/images/frontend/banner/TRSN.png" alt="bg">
     </div>
   </section>
 </template>

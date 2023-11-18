@@ -23,10 +23,14 @@ export default {
                 await router.replace({ params: { locale: newLocale } })  // <--- 3
             } catch (e) {  // <--- 4
                 console.log(e)
-                router.push("/")
+
             }
+            window.location.reload()
+
         }
+        
         return { t, locale, supportedLocales, switchLanguage }
+        
     }
 }
 </script>

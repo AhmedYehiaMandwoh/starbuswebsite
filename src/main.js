@@ -25,4 +25,5 @@ import '@/assets/global/js/select2.min.js'
 import '@/assets/templates/basic/js/main.js'
 app.use(router)
 app.use(i18n)
+
 app.mount('#app')

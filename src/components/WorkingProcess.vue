@@ -5,9 +5,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-10">
                     <div class="section-header text-center">
-                        <h2 class="title">Get Your Tickets With Just 3 Steps</h2>
-                        <p>Have a look at our popular reason. why you should choose you bus. Just a Bus and get a ticket for
-                            your great journey. !</p>
+                        <h2 class="title">{{ t('header.getTicketSteps') }}</h2>
+                        <p>{{ t('header.paraSteps') }}</p>
                     </div>
                 </div>
             </div>
@@ -21,8 +20,8 @@
                             </div>
                         </div>
                         <div class="content">
-                            <h4 class="title">Search Your Bus</h4>
-                            <p>Choose your origin, destination,Just choose a Bus journey dates and search for buses</p>
+                            <h4 class="title">{{ t('header.search_ticket_bus') }} </h4>
+                            <p>{{ t('header.secondStep')  }}</p>
                         </div>
                     </div>
                 </div>
@@ -35,8 +34,8 @@
                             </div>
                         </div>
                         <div class="content">
-                            <h4 class="title">Choose The Ticket</h4>
-                            <p>Choose your origin, destination,Just a Bus for your great journey dates and search for buses
+                            <h4 class="title">{{ t('header.choose_ticket_bus') }} </h4>
+                            <p>{{t('header.thirdStep') }}
                             </p>
                         </div>
                     </div>
@@ -50,9 +49,8 @@
                             </div>
                         </div>
                         <div class="content">
-                            <h4 class="title">Pay Bill</h4>
-                            <p>Choose your origin, destination,choose a Bus for your great journey dates and search for
-                                buses</p>
+                            <h4 class="title">{{ t('header.pay_bill') }} </h4>
+                            <p>{{t('header.thirdStep') }}</p>
                         </div>
                     </div>
                 </div>
@@ -62,8 +60,13 @@
     <!-- Working Process Section Ends Here -->
 </template>
 <script>
+// Add this script:
+import { useI18n } from 'vue-i18n'
 export default {
-
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  }
 }
 </script>
 <style></style>

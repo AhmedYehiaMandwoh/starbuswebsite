@@ -30,7 +30,7 @@ const Trans = {
     },
 
     getPersistedLocale() { // <--- 3
-        const persistedLocale = localStorage.getItem("user-locale")
+        const persistedLocale = localStorage.getItem("userLocale")
         if (Trans.isLocaleSupported(persistedLocale)) {
             return persistedLocale
         } else {
@@ -47,8 +47,22 @@ const Trans = {
     async switchLanguage(newLocale) { // <--- 3
         Trans.currentLocale = newLocale
         document.querySelector("html").setAttribute("lang", newLocale)
-        localStorage.setItem("user-locale", newLocale)
-    },
+        localStorage.setItem("userLocale", newLocale)
+        if(newLocale == 'ar') {
+            localStorage.setItem("userDir", "rtl")
+            
+        }else{
+            localStorage.setItem("userDir", "ltr")
+
+        }
+        if(localStorage.getItem("userDir") == 'rtl') {
+            document.querySelector("html").setAttribute("dir", "rtl")
+            
+        }else{
+            document.querySelector("html").setAttribute("dir", "ltr")
+
+        }
+    }, 
 }
 export default Trans
 

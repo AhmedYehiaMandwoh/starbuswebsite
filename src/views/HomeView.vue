@@ -16,3 +16,4 @@ import Banner from '../components/Banner.vue';
     <Footer />
   </main>
 </template>
+
