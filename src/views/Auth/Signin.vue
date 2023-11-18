@@ -13,20 +13,19 @@
               <span>{{ t('header.signin_account') }}</span>
             </div>
           </div>
-          <form method="POST" class="account-form row" action="https://script.viserlab.com/viserbus/login"
-            onsubmit="return submitUserForm();">
+          <form method="POST" class="account-form row" @submit.prevent="onSubmit">
             <input type="hidden" name="_token" value="xy7TSRODq8di5Obt9QHDznSiokKzcgqpmreBJZFV">
             <div class="col-lg-12">
               <div class="form--group">
                 <label for="phone">{{ t('header.phone') }}</label>
-                <input id="phone" name="phone" type="text" class="form--control" :placeholder="t('header.phone_message')"
-                  required>
+                <input id="phone" name="phone" type="text" class="form--control" v-model="phone"
+                  :placeholder="t('header.phone_message')" required>
               </div>
             </div>
             <div class="col-lg-12">
               <div class="form--group">
                 <label for="password">{{ t('header.password') }}</label>
-                <input id="password" type="password" name="password" class="form--control"
+                <input id="password" type="password" name="password" v-model="password" class="form--control"
                   :placeholder="t('header.password_message')" required>
               </div>
             </div>
@@ -66,11 +65,41 @@ import Navbar from '../../components/Navbar.vue';
 import TopHeader from '../../components/TopHeader.vue'
 import Footer from '../../components/Footer.vue'
 import { useI18n } from 'vue-i18n'
+import axios from 'axios'
 export default {
   components: {
     Navbar,
     TopHeader,
     Footer
+  },
+  data() {
+    return {
+      phone: null,
+      password: null,
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.signIn();
+    },
+    async signIn() {
+      try {
+        const response = await axios.post('https://mdsapps.net/api/outside/login', {
+          tel_number: this.phone,
+          password: this.password
+        });
+
+        if (response.status === 200) {
+          // Sign-in successful
+          // Store user data or redirect to the home page
+        } else {
+          // Handle invalid credentials or other errors
+          console.error('Sign-in failed:', response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
   },
   setup() {
     const { t } = useI18n()
