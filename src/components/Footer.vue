@@ -7,7 +7,7 @@
                     <div class="col-xl-4 col-lg-3 col-md-6 col-sm-6">
                         <div class="footer-widget">
                             <div class="logo">
-                                <img src="assets/images/logoIcon/logo_2.png" alt="Logo">
+                                <img src="/src/assets/images/logoIcon/logo.png" alt="Logo">
                             </div>
                             <p>Delectus culpa laboriosam debitis saepe. Commodi earum minus ut obcaecati veniam deserunt
                                 est!</p>

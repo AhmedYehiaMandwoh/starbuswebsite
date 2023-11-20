@@ -2,6 +2,7 @@
   <main>
     <TopHeader />
     <Navbar />
+
     <!-- Account Section Starts Here -->
     <section class="account-section bg_img"
       style="background: url(/src/assets/images/frontend/sign_in/login.jpg); background-size: contain; background-position: left;">
@@ -58,6 +59,7 @@
     </section>
     <!-- Account Section Ends Here -->
     <Footer />
+    
   </main>
 </template>
 <script>
@@ -83,6 +85,7 @@ export default {
       this.signIn();
     },
     async signIn() {
+
       try {
         const response = await axios.post('https://mdsapps.net/api/outside/login', {
           tel_number: this.phone,
@@ -91,6 +94,16 @@ export default {
 
         if (response.status === 200) {
           // Sign-in successful
+          localStorage.setItem('user', JSON.stringify(response.data.data.user));
+          localStorage.setItem('access_token', response.data.data.access_token);
+          this.$router.replace('/home').then(() => {
+            this.$notify({
+              type: "success",
+              title: this.t('header.login_success'),
+            });
+          })
+
+
           // Store user data or redirect to the home page
         } else {
           // Handle invalid credentials or other errors
@@ -101,6 +114,7 @@ export default {
       }
     }
   },
+
   setup() {
     const { t } = useI18n()
     return { t }

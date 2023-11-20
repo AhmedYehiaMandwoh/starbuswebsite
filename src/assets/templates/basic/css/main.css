@@ -357,8 +357,7 @@ button {
 }
 
 button {
-    height: 50px;
-    padding: 13px 30px;
+
     cursor: pointer;
     background: var(--main-color);
     color: #fff;
@@ -1410,6 +1409,9 @@ i {
 }
 
 .header-top-area .right-content .header-login li .sign-in {
+    color: #777;
+}
+.header-top-area .right-content .header-login li .sign-in:hover {
     color: var(--main-color);
 }
 
@@ -1477,7 +1479,7 @@ i {
 
 .banner-section::before {
     content: "";
-    background-color: rgba(14, 158, 77, 0.3);
+    background-color: rgb(255 153 0 / 72%);
     position: absolute;
     -webkit-transform: translate(50%);
     transform: translate(50%);
@@ -1503,7 +1505,7 @@ i {
 
 .banner-section::after {
     content: "";
-    background-color: rgba(14, 158, 77, 0.4);
+    background-color: rgba(237, 143, 3, 0.4);
     position: absolute;
     -webkit-transform: translate(50%);
     transform: translate(50%);
@@ -1948,7 +1950,6 @@ i {
 
 .ticket-form .form--group .form--control {
     border-color: rgba(14, 158, 77, 0.25);
-    padding-left: 35px;
     height: 40px;
 }
 
@@ -5848,7 +5849,7 @@ i {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 25px;
-    border-left: 4px solid #0e9e4d;
+    border-left: 4px solid #f00;
 }
 
 .dashboard-widget__content p {
@@ -5863,7 +5864,7 @@ i {
 
 .dashboard-widget__icon {
     font-size: 32px;
-    background-color: #0e9e4d;
+    background-color: #f00;
     border-radius: 7px;
     color: #fff;
     width: 60px;
@@ -5885,13 +5886,6 @@ div[class*="col"]:nth-child(3n + 1) .dashboard-widget .dashboard-widget__icon {
     background-color: #43c525;
 }
 
-div[class*="col"]:nth-child(3n + 2) .dashboard-widget {
-    border-color: #dc3545;
-}
-
-div[class*="col"]:nth-child(3n + 2) .dashboard-widget .dashboard-widget__icon {
-    background-color: #dc3545;
-}
 
 div[class*="col"]:nth-child(3n + 3) .dashboard-widget {
     border-color: #ffc107;

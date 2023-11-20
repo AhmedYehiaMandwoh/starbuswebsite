@@ -20,6 +20,8 @@ if (localStorage.getItem("userDir") == 'ltr') {
 </script>
 
 <template >
+      <notifications position="bottom right" />
+
   <div id="project" v-bind:class="[{'arabic' : $i18n.locale=='ar' },{'english':$i18n.locale=='en'}]">
 
   <RouterView />

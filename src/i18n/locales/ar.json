@@ -28,14 +28,30 @@
         "remember_me" : "تذكرنى",
         "forgot_password" : "نسيت كلمة السر ؟",
         "sign_in" : "الدخول",
+        "SignOut" : "تسجيل خروج",
+        "SignIn" : "تسجيل دخول ",
+        "SignUp" : "مستخدم جديد",
         "dont_have_Account" : "ليس لديك حساب ؟",
         "sign_up" : "مستخدم جديد",
         "name" : "الأسم",
+        "dashboard" : "لوحة التحكم",
         "gender" : "النوع",
         "male" : "ذكر",
         "female" : "أنثى",
+        "date" : "التاريخ",
+        "my_account" : "حسابى",
+        "profile" : "اعدادات الحساب",
+        "my_tickets" : "التذاكر",
+        "wallet" : "المحفظة",
+        "points" : "النقاط",
+        "change_password" : "تغيير كلمة السر",
         "name_message" : "أدخل اسمك بالكامل",
-        "new_account": "إنشاء حساب جديد"
+        "my_profile" : "حسابى الشخصى",
+        "new_account": "إنشاء حساب جديد",
+        "login_success" : "تم تسجيل الدخول بنجاح , مرحبا بك فى ستار بص",
+        "The password format is invalid" : "كلمة المرور ليست قوية",
+        "The tel number has already been taken" : ".هذا الرقم مسجل من قبل"
+
 
 
 

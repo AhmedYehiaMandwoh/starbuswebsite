@@ -35,7 +35,23 @@
       "gender" : "Gender",
       "male" : "Male",
       "female" : "Female",
-      "name_message" : "Enter your name"
+      "date" : "Date",
+      "dashboard" : "Dashboard",
+      "my_account" : "My account",
+      "profile" : "Profile",
+      "my_tickets" : "Tickets",
+      "my_profile" : "My profile",
+      "wallet" : "Wallet",
+      "points" : "Points",
+      "change_password" : "Change Password",
+      "SignOut" : "Sign Out",
+      "SignIn" : "Sign In",
+      "SignUp" : "Sign Up",
+      "login_success" : "Sign in successfully, welcome to starbus",
+      "name_message" : "Enter your name",
+      "The password format is invalid" : "The password format is invalid.",
+      "The tel number has already been taken" : "The tel number has already been taken.",
+      "signup_success" : "Sign up successfully, welcome to starbus"
 
 
     }

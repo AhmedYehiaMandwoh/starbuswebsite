@@ -202,6 +202,3 @@ $(".info-item").on("mouseover", function () {
     $(this).addClass("active");
 });
 
-$(document).ready(function () {
-    $(".select2").select2();
-});

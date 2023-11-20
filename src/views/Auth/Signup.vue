@@ -13,17 +13,13 @@
               <span>{{ t('header.new_account') }}</span>
             </div>
           </div>
-          <form method="POST" class="account-form row" action="https://script.viserlab.com/viserbus/login"
-            onsubmit="return submitUserForm();">
-            <input type="hidden" name="_token" value="xy7TSRODq8di5Obt9QHDznSiokKzcgqpmreBJZFV">
+          <form method="POST" class="account-form row" @submit.prevent="onSubmit">
             <div class="col-md-6">
               <div class="form--group">
                 <label for="name">{{ t('header.name') }}</label>
-                <input id="name" name="name" type="text" class="form--control" :placeholder="t('header.name_message')"
+                <input id="name" name="name" type="text" class="form--control" v-model="name" :placeholder="t('header.name_message')"
                   required>
               </div>
-              <vue-country-code @onSelect="onSelect" :preferredCountries="['vn', 'us', 'gb']">
-              </vue-country-code>
             </div>
             <div class="col-md-6">
               <div class="form--group phone">
@@ -32,7 +28,7 @@
                   <span class="input-group-text mobile-code border-0 h-40">+20</span>
                   <input type="hidden" name="mobile_code" value="20">
                   <input type="hidden" name="country_code" value="EG">
-                  <input type="number" name="mobile" id="mobile" value="" class="form--control ps-2  checkUser"
+                  <input type="number" name="mobile" id="mobile" v-model="tel_number" class="form--control ps-2  checkUser"
                     :placeholder="t('header.phone_message')">
                 </div>
                 <small class="text-danger mobileExist"></small>
@@ -42,8 +38,7 @@
             <div class="col-md-6">
               <div class="form--group">
                 <label for="password">{{ t('header.gender') }}</label>
-                    <select class="form--control select2" name="gender">
-                      <option value="">{{ t('header.choose') }}</option>
+                    <select class="form--control" name="gender" v-model="gender">
                       <option value="male">{{ t('header.male') }}</option>
                       <option value="female">{{ t('header.female') }}</option>
                     </select>
@@ -53,7 +48,7 @@
             <div class="col-md-6">
               <div class="form--group">
                 <label for="password">{{ t('header.password') }}</label>
-                <input id="password" type="password" name="password" class="form--control"
+                <input id="password" type="password" name="password" v-model="password" class="form--control"
                   :placeholder="t('header.password_message')" required>
               </div>
             </div>
@@ -90,11 +85,61 @@ import Navbar from '../../components/Navbar.vue';
 import TopHeader from '../../components/TopHeader.vue'
 import Footer from '../../components/Footer.vue'
 import { useI18n } from 'vue-i18n'
+import axios from 'axios'
 export default {
   components: {
     Navbar,
     TopHeader,
     Footer
+  },
+  data() {
+    return {
+      name: null,
+      gender: null,
+      tel_number: null,
+      password: null
+    }
+  },
+  methods: {
+    onSubmit() {
+      this.signUp();
+    },
+    async signUp() {
+
+      try {
+        const response = await axios.post('https://mdsapps.net/api/outside/signup', {
+          name: this.name,
+          tel_number: this.tel_number,
+          gender: this.gender,
+          password: this.password
+        });
+        console.log(response.data.data);
+        if (response.data.status === 201) {
+          this.$router.replace('/home/signin').then(() => {
+            this.$notify({
+              type: "success",
+              title: this.t('header.signup_success'),
+            });
+          })
+        }
+        if (response.data.status === 400) {
+          if(response.data.data.password) {
+            this.$notify({
+              type: "error",
+              title: this.t(`header.${response.data.data.password[0]}`),
+            });
+          }
+          if(response.data.data.tel_number) {
+            this.$notify({
+              type: "error",
+              title: this.t(`header.${response.data.data.tel_number[0]}`),
+            });
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
   },
   setup() {
     const { t } = useI18n()
@@ -102,3 +147,16 @@ export default {
   }
 }
 </script>
+
+<style>
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+</style>
