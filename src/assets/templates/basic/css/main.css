@@ -89,7 +89,7 @@
 /* Text Color */
 
 .text--primary {
-    color: #1b273d !important;
+    color: #f29100 !important;
 }
 
 .text--secondary {
@@ -166,7 +166,7 @@
 /* Background Color */
 
 .bg--primary {
-    background: #1b273d !important;
+    background: #f29100 !important;
 }
 
 .bg--secondary {
@@ -1090,7 +1090,7 @@ i {
 
     .sub-menu li a:hover {
         padding-left: 20px;
-        background: #1b273d;
+        background: #f29100;
         color: #fff !important;
     }
 
@@ -1224,7 +1224,7 @@ i {
     }
 
     .menu.active {
-        background: #1b273d;
+        background: #f29100;
         opacity: 1;
         transform: translateY(0px);
         visibility: visible;
@@ -2846,7 +2846,7 @@ i {
     font-family: "Line Awesome Free";
     left: 0;
     top: 6px;
-    color: #1b273d;
+    color: #f29100;
     margin-right: 5px;
 }
 
@@ -3280,7 +3280,7 @@ i {
 }
 
 .booking-table thead tr {
-    background: #081a41;
+    background: #f29100;
 }
 
 .booking-table thead tr:nth-child(even) {
@@ -3367,7 +3367,7 @@ i {
 
 .booking-table tbody tr .action-button-wrapper .checkinfo {
     font-size: 18px;
-    color: #081a41;
+    color: #f29100;
     background: rgba(7, 10, 185, 0.1);
 }
 
@@ -4254,7 +4254,7 @@ i {
     height: 100%;
     left: 0;
     top: 0;
-    background: #1b273d;
+    background: #f29100;
     opacity: 0.45;
 }
 
@@ -4509,7 +4509,7 @@ i {
 }
 
 .book-ticket .seats-left {
-    color: #1b273d;
+    color: #f29100;
 }
 
 .ticket-item-footer {
@@ -4644,7 +4644,7 @@ i {
 }
 
 .tab-pane .close-btn:hover {
-    background: #1b273d;
+    background: #f29100;
 }
 
 .bus-seat-management {
@@ -5122,7 +5122,7 @@ i {
     content: "\f101";
     left: 0;
     top: 7px;
-    color: #1b273d;
+    color: #f29100;
 }
 
 .header-trigger-wrapper,
@@ -5767,7 +5767,7 @@ i {
 }
 
 .profile__content__edit .title {
-    background: #1b273d;
+    background: #f29100;
     padding: 15px 25px;
     text-align: center;
     color: #fff;

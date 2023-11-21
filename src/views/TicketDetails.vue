@@ -50,8 +50,6 @@
 
                         <div class="seat-plan-inner" dir="rtl">
                             <div class="single">
-
-
                                 <span class="front">Front</span>
                                 <span class="rear">Rear</span>
                                 <span class="driver">
@@ -63,15 +61,12 @@
                                                     <span></span>
                                                 </span>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </span>
                                 <span class="lower"><img
                                         src="https://script.viserlab.com/viserbus/assets/templates/basic/images/icon/wheel.svg"
                                         alt="icon"></span>
-
 
                                 <div class="seat-wrapper">
                                     <div class="left-side"></div>
@@ -253,17 +248,17 @@ export default {
             }
         },
         getSeat(val, seatId) {
-            if(this.from_station == '' || this.to_station == '') {
+            if (this.from_station == '' || this.to_station == '') {
                 this.$notify({
-              type: "error",
-              title: this.t('header.station_message_required'),
-            });
-            }else{
+                    type: "error",
+                    title: this.t('header.station_message_required'),
+                });
+            } else {
 
                 var ele = document.getElementById('' + seatId + '')
                 ele.classList.toggle('selected');
             }
-          
+
         }
     },
     setup() {
