@@ -6140,7 +6140,13 @@ div[class*="col"]:nth-child(3n + 3) .dashboard-widget .dashboard-widget__icon {
 .arabic .phone .input-group{
     direction: ltr;
 }
+.arabic .booking-table thead tr th:first-child {
+    border-radius: 0 15px 0 0;
+}
 
+.arabic .booking-table thead tr th:last-child {
+    border-radius: 15px 0 0 0px;
+}
 .select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered {
     padding-left: 8px;
     padding-right: 20px;

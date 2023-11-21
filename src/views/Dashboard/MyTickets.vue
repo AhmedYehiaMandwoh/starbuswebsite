@@ -12,47 +12,11 @@
                     </div>
                     <div class="col-md-9">
                         <div class="dashboard-wrapper">
-                            <div class="row pb-60 gy-4 justify-content-center">
-                                <div class="col-lg-4 col-md-6 col-sm-10">
-                                    <div class="dashboard-widget">
-                                        <div class="dashboard-widget__content">
-                                            <p>{{t('header.total_booked')}}</p>
-                                            <h3 class="title">113</h3>
-                                        </div>
-                                        <div class="dashboard-widget__icon">
-                                            <i class="las la-ticket-alt"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-10">
-                                    <div class="dashboard-widget">
-                                        <div class="dashboard-widget__content">
-                                            <p>{{t('header.total_rejected')}}</p>
-                                            <h3 class="title">1</h3>
-                                        </div>
-                                        <div class="dashboard-widget__icon">
-                                            <i class="las la-ticket-alt"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-10">
-                                    <div class="dashboard-widget">
-                                        <div class="dashboard-widget__content">
-                                            <p>{{t('header.total_pending')}}</p>
-                                            <h3 class="title">0</h3>
-                                        </div>
-                                        <div class="dashboard-widget__icon">
-                                            <i class="las la-ticket-alt"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="booking-table-wrapper">
                                 <table class="booking-table">
                                     <thead>
                                         <tr>
-                                            <th>PNR Number</th>
+                                            <th>ticket_number</th>
                                             <th>AC / Non-Ac</th>
                                             <th>Starting Point</th>
                                             <th>Dropping Point</th>

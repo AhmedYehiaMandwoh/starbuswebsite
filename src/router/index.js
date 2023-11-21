@@ -43,15 +43,30 @@ const router = createRouter({
       component: () => import('../views/Auth/Signup.vue')
     },
     {
-      path: '/home/dashboard/profile',
-      name: 'profile',
-      component: () => import('../views/Dashboard/Profile.vue'),
+      path: '/home/tickets/:from/:to/:date',
+      name: 'tickets',
+      component: () => import('../views/Tickets.vue'),
       meta: {
         requiresAuth: true,
-        pageTitle: "Profile",
+        pageTitle: "Tickets",
         breadcrumb: [
           {
-            text: "Profile",
+            text: "Tickets",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/home/ticket/details-seat/:route_id/:from/:to/:uuid',
+      name: 'ticket',
+      component: () => import('../views/TicketDetails.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "Ticket",
+        breadcrumb: [
+          {
+            text: "Ticket",
             active: true,
           },
         ],
@@ -67,6 +82,81 @@ const router = createRouter({
         breadcrumb: [
           {
             text: "dashboard",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/home/dashboard/profile',
+      name: 'profile',
+      component: () => import('../views/Dashboard/Profile.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "Profile",
+        breadcrumb: [
+          {
+            text: "Profile",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/home/dashboard/mytickets',
+      name: 'mytickets',
+      component: () => import('../views/Dashboard/MyTickets.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "mytickets",
+        breadcrumb: [
+          {
+            text: "mytickets",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/home/dashboard/wallet',
+      name: 'wallet',
+      component: () => import('../views/Dashboard/Wallet.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "Wallet",
+        breadcrumb: [
+          {
+            text: "wallet",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/home/dashboard/points',
+      name: 'points',
+      component: () => import('../views/Dashboard/Points.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "Points",
+        breadcrumb: [
+          {
+            text: "points",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/home/dashboard/changepassword',
+      name: 'changepassword',
+      component: () => import('../views/Dashboard/Points.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "Change Password",
+        breadcrumb: [
+          {
+            text: "changepassword",
             active: true,
           },
         ],

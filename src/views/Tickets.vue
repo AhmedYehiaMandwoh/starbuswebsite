@@ -66,7 +66,7 @@
                           </span></span></label>
                     </li>
                   </ul>
-                  
+
                 </div>
 
                 <div class="filter-item">
@@ -80,42 +80,38 @@
             <div class="ticket-wrapper">
 
 
-              <div class="ticket-item">
+              <div class="ticket-item" v-for="ticket in all_tickets" :key="ticket.Route_id">
                 <div class="ticket-item-inner">
-                  <h5 class="bus-name">Cairo - Taba</h5>
-                  <span class="bus-info">Avaiable seats 8</span>
-                  <span class="ratting"><i class="las la-bus"></i>AC</span>
+                  <h5 class="bus-name" v-if="locale == 'en'">{{ ticket.route_name }}</h5>
+                  <h5 class="bus-name" v-if="locale == 'ar'">{{ ticket.route_name_ar }}</h5>
+                  <span class="bus-info">{{ t('header.avaiable_seats') }} {{ ticket.Seat_Left }}</span>
+                  <span class="ratting"><i class="las la-bus"></i> {{ ticket.bus_name }}</span>
                 </div>
                 <div class="ticket-item-inner travel-time">
                   <div class="bus-time">
-                    <p class="time">08:00 AM</p>
-                    <p class="place">Cairo</p>
+                    <p class="time" v-if="locale == 'en'">{{ ticket.from.name }}</p>
+                    <p class="time" v-if="locale == 'ar'">{{ ticket.from.name_ar }}</p>
+                    <p class="place">{{ ticket.from.name }}</p>
                   </div>
                   <div class=" bus-time">
-                    <i class="las la-arrow-right"></i>
-                    <p>08:30 min</p>
+                    <i class="las la-arrow-right" v-if="locale == 'en'"></i>
+                    <i class="las la-arrow-left" v-if="locale == 'ar'"></i>
+                    <p>{{ ticket.time }}</p>
                   </div>
                   <div class=" bus-time">
-                    <p class="time">04:30 PM</p>
-                    <p class="place">Taba</p>
+                    <p class="time" v-if="locale == 'en'">{{ ticket.to.name }}</p>
+                    <p class="time" v-if="locale == 'ar'">{{ ticket.to.name_ar }}</p>
+                    <p class="place">{{ ticket.to.name }}</p>
                   </div>
                 </div>
                 <div class="ticket-item-inner book-ticket">
-                  <p class="rent mb-0">450EGP</p>
-                  <div class="seats-left mt-2 mb-3 fs--14px"> captain: <div class="d-inline-flex flex-wrap" style="gap:5px;"><span class="badge badge--primary">ahmed</span></div></div>
-                  <a class="btn btn--base" href="https://script.viserlab.com/viserbus/ticket/1/ac-kansas-echo-bass">Select
-                    Seat</a>
-                </div>
-                <div class="ticket-item-footer">
-                  <div class="d-flex content-justify-center">
-                    <span>
-                      <strong>Facilities - </strong>
-                      <span class="facilities">Water Bottle</span>
-                      <span class="facilities">Pillow</span>
-                      <span class="facilities">Wifi</span>
-                    </span>
+                  <p class="rent mb-0">{{ ticket.price }} {{ t('header.egp') }}</p>
+                  <div class="seats-left mt-2 mb-3 fs--14px"> {{ t('header.captain') }}: <div
+                      class="d-inline-flex flex-wrap" style="gap:5px;"><span class="badge badge--primary">---</span></div>
                   </div>
+                  <a class="btn btn--base" @click="chooseSeat(ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
                 </div>
+
               </div>
 
 
@@ -134,15 +130,60 @@ import Navbar from '../components/Navbar.vue';
 import TopHeader from '../components/TopHeader.vue'
 import Footer from '../components/Footer.vue'
 import { useI18n } from 'vue-i18n'
+import axios from 'axios'
 export default {
   components: {
     Navbar,
     TopHeader,
     Footer
   },
+  data() {
+    return {
+      all_tickets: [],
+      locale: localStorage.getItem("userLocale")
+    }
+  },
+  methods: {
+    async getAllTickets() {
+      const token = localStorage.getItem('access_token');
+
+      let formData = new FormData();
+      formData.append('from', this.$route.params.from);
+      formData.append('to', this.$route.params.to);
+      formData.append('date', this.$route.params.date);
+      try {
+        const response = await axios.post('https://mdsapps.net/api/outside/searchRide/get', formData, {
+
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+
+        );
+
+        if (response.status === 200) {
+          this.all_tickets = response.data.data
+
+          // Store user data or redirect to the home page
+        } else {
+          // Handle invalid credentials or other errors
+          console.error('Sign-in failed:', response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    chooseSeat(route_id,from,to,uuid) {
+      this.$router.push("/home/ticket/details-seat/"+route_id+ "/" + from +"/"+ to +"/"+ uuid);
+
+    }
+  },
   setup() {
     const { t } = useI18n()
     return { t }
-  }
+  },
+  mounted() {
+    this.getAllTickets();
+  },
 }
 </script>

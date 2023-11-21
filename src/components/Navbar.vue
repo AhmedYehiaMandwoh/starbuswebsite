@@ -24,20 +24,20 @@
 
               </li>
               <li>
-                <router-link to="">{{ t('header.my_tickets') }}</router-link>
+                <router-link to="/home/dashboard/mytickets">{{ t('header.my_tickets') }}</router-link>
               </li>
               <li>
-                <router-link to="">{{ t('header.wallet') }}</router-link>
+                <router-link to="/home/dashboard/wallet">{{ t('header.wallet') }}</router-link>
               </li>
               <li>
-                <router-link to="">{{ t('header.points') }}</router-link>
+                <router-link to="/home/dashboard/points">{{ t('header.points') }}</router-link>
               </li>
               <li>
                 <router-link to="/home/dashboard/profile">{{ t('header.my_account') }}</router-link>
               </li>
 
               <li>
-                <router-link to="">{{ t('header.change_password') }}</router-link>
+                <router-link to="/home/dashboard/changepassword">{{ t('header.change_password') }}</router-link>
               </li>
             </ul>
           </li>

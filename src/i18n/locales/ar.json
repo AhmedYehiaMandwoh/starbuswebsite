@@ -43,19 +43,29 @@
         "profile" : "اعدادات الحساب",
         "my_tickets" : "التذاكر",
         "wallet" : "المحفظة",
+        "required_all" : "جميع الحقول مطلوبه",
         "points" : "النقاط",
         "change_password" : "تغيير كلمة السر",
         "name_message" : "أدخل اسمك بالكامل",
         "my_profile" : "حسابى الشخصى",
         "new_account": "إنشاء حساب جديد",
+        "avaiable_seats" : "المقاعد المتاحة",
         "login_success" : "تم تسجيل الدخول بنجاح , مرحبا بك فى ستار بص",
         "The password format is invalid" : "كلمة المرور ليست قوية",
-        "The tel number has already been taken" : ".هذا الرقم مسجل من قبل"
+        "The tel number has already been taken" : ".هذا الرقم مسجل من قبل",
+        "total_booked" : "إجمالي التذاكر المحجوزة",
+        "total_rejected" : "إجمالي التذاكر المرفوضة",
+        "total_pending" : "إجمالي التذاكر المعلقة",
+        "egp" : "جنية",
+        "captain" : "السائق",
+        "Select_Seat" : "اختر المقعد",
+        "From_Station" : "من محطة",
+        "To_Station" : "إلى محطة",
+        "showAvailable" : "اظهر الكراسى المتاحة",
+        "station_message_required" : "يرجى تحديد نقطة الالتقاء ونقطة النزول قبل تحديد أي مقعد"
 
 
 
-
-  
 
       }
 

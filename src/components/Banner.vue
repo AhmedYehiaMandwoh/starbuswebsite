@@ -12,30 +12,31 @@
           </div>
           <div class="tab-content">
             <div class="tab-pane fade show active" id="one-way">
-              <form action="https://script.viserlab.com/viserbus/ticket/search"
-                class="ticket-form row g-3 justify-content-center m-0">
+              <div  class="ticket-form row g-3 justify-content-center m-0">
                 <div class="col-md-6">
                   <option value="">{{ t('header.From_City') }}</option>
-                  <v-select :options="all_cities" :reduce="city => city.id" label="name" v-model="from_city" />
+                  <v-select :options="all_cities" :reduce="city => city.id" label="name_ar" v-model="from_city"  required v-if="locale == 'ar'"/>
+                  <v-select :options="all_cities" :reduce="city => city.id" label="name" v-model="from_city"  required v-if="locale == 'en'"/>
                 </div>
                 <div class="col-md-6">
                   <option value="">{{ t('header.To_City') }}</option>
-                  <v-select :options="all_cities" :reduce="city => city.id" label="name" v-model="to_city" />
+                  <v-select :options="all_cities" :reduce="city => city.id" label="name_ar" v-model="to_city"  required v-if="locale == 'ar'"/>
+                  <v-select :options="all_cities" :reduce="city => city.id" label="name" v-model="to_city"  required v-if="locale == 'en'"/>
                 </div>
                 <div class="col-md-12">
                   <div class="form--group">
                     <option value="">{{ t('header.date') }}</option>
 
-                    <input type="date" name="date_of_journey" class="form--control datepicker"
+                    <input type="date" name="date_of_journey" class="form--control datepicker" v-model="date" required
                       placeholder="Departure Date" autocomplete="off">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form--group">
-                    <button>Find Tickets</button>
+                    <button @click="searchTickets">Find Tickets</button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -62,6 +63,8 @@ export default {
       all_cities: [],
       from_city: '',
       to_city: '',
+      date: '',
+      locale: localStorage.getItem("userLocale")
 
 
     }
@@ -84,6 +87,18 @@ export default {
       // Return the permissions.
       this.all_cities = response.data.cities
     },
+    searchTickets () {
+      if(this.from_city == '' || this.to_city == '' || this.date == '') {
+        this.$notify({
+              type: "error",
+              title: this.t('header.required_all'),
+            });
+      }else{
+
+        this.$router.push("/home/tickets/" + this.from_city + "/" + this.to_city + "/" + this.date);
+      }
+
+    }
   },
   mounted() {
     this.getAllCities();
