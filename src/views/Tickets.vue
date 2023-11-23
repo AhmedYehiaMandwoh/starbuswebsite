@@ -6,7 +6,7 @@
     <section class="ticket-section padding-bottom section-bg padding-top">
       <div class="container">
         <div class="row gy-5">
-          <div class="col-lg-3">
+          <!-- <div class="col-lg-3">
             <form action="https://script.viserlab.com/viserbus/ticket/search" id="filterForm">
               <div class="ticket-filter">
                 <div class="filter-header filter-item">
@@ -75,12 +75,11 @@
                 </div>
               </div>
             </form>
-          </div>
-          <div class="col-lg-9">
+          </div> -->
+          <div class="col-md-12" v-if="all_tickets.length > 0">
             <div class="ticket-wrapper">
 
-
-              <div class="ticket-item" v-for="ticket in all_tickets" :key="ticket.Route_id">
+              <div class="ticket-item" v-for="ticket in all_tickets" :key="ticket.Route_id" v-if="all_tickets">
                 <div class="ticket-item-inner">
                   <h5 class="bus-name" v-if="locale == 'en'">{{ ticket.route_name }}</h5>
                   <h5 class="bus-name" v-if="locale == 'ar'">{{ ticket.route_name_ar }}</h5>
@@ -105,15 +104,32 @@
                   </div>
                 </div>
                 <div class="ticket-item-inner book-ticket">
-                  <p class="rent mb-0">{{ ticket.price }} {{ t('header.egp') }}</p>
-                  <div class="seats-left mt-2 mb-3 fs--14px"> {{ t('header.captain') }}: <div
-                      class="d-inline-flex flex-wrap" style="gap:5px;"><span class="badge badge--primary">---</span></div>
-                  </div>
-                  <a class="btn btn--base" @click="chooseSeat(ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
+                  <p class="rent mb-0 mb-3 ">{{ ticket.price }} {{ t('header.egp') }}</p>
+                  <!-- <div class="seats-left mt-2 mb-3 fs--14px"> {{ t('header.captain') }}: <div
+                      class="d-inline-flex flex-wrap" style="gap:5px;">
+                      <span class="badge badge--primary" v-if="locale == 'en'">{{ ticket.captain.fullname }}</span>
+                      <span class="badge badge--primary" v-if="locale == 'ar'">{{ ticket.captain.fullname_ar }}</span>
+                    </div>
+                  </div> -->
+                  <a class="btn btn--base" @click="chooseSeat(ticket.Schedule_id,ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
                 </div>
 
               </div>
-
+            </div>
+          </div>
+          <div class="col-md-12 mt-3" v-else>
+            <div class="text-center">
+              <div class="card">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <h4 class="mt-2">{{ t('header.no_trips_added') }}</h4>
+                    <img class="nodata" src="/src/assets/images/icons/nodata.jpg">
+                    <router-link to="/home" class="cmn--btn">{{ t('header.go_to_home') }}</router-link>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              </div>
 
 
             </div>
@@ -131,12 +147,16 @@ import TopHeader from '../components/TopHeader.vue'
 import Footer from '../components/Footer.vue'
 import { useI18n } from 'vue-i18n'
 import axios from 'axios'
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 export default {
   components: {
     Navbar,
     TopHeader,
-    Footer
+    Footer,
+    VueDatePicker
   },
+  
   data() {
     return {
       all_tickets: [],
@@ -163,7 +183,7 @@ export default {
 
         if (response.status === 200) {
           this.all_tickets = response.data.data
-
+          console.log(response.data.data);
           // Store user data or redirect to the home page
         } else {
           // Handle invalid credentials or other errors
@@ -173,8 +193,8 @@ export default {
         console.error(error);
       }
     },
-    chooseSeat(route_id,from,to,uuid) {
-      this.$router.push("/home/ticket/details-seat/"+route_id+ "/" + from +"/"+ to +"/"+ uuid);
+    chooseSeat(schedule_id,route_id,from,to,uuid) {
+      this.$router.push("/home/ticket/details-seat/" +this.$route.params.date +"/"+ schedule_id +"/"+ route_id+ "/" + from +"/"+ to +"/"+ uuid);
 
     }
   },
@@ -187,3 +207,8 @@ export default {
   },
 }
 </script>
+<style>
+  .nodata {
+    width: 100%;
+  }
+</style>

@@ -4,12 +4,7 @@
   <div class="header-bottom">
     <div class="container">
       <div class="header-bottom-area">
-        <div class="logo">
-          <router-link to="/home" class="sign-in">
-            <img src="@/assets/images/logoIcon/logo.png" alt="Logo">
-
-          </router-link>
-        </div> <!-- Logo End -->
+      
         <ul class="menu">
           <li>
             <router-link to="/home">{{ t("header.home") }}</router-link>
@@ -42,7 +37,13 @@
             </ul>
           </li>
         </ul>
-        <div class="d-flex flex-wrap algin-items-center">
+        <div class="logo">
+          <router-link to="/home" class="sign-in">
+            <img src="@/assets/images/logoIcon/logo.png" alt="Logo">
+
+          </router-link>
+        </div> <!-- Logo End -->
+        <!-- <div class="d-flex flex-wrap algin-items-center">
           <a href="tickets.html" class="cmn--btn btn--sm">Buy Tickets</a>
           <div class="header-trigger-wrapper d-flex d-lg-none ms-4">
             <div class="header-trigger d-block d-lg-none">
@@ -51,8 +52,8 @@
             <div class="top-bar-trigger">
               <i class="las la-ellipsis-v"></i>
             </div>
-          </div><!-- Trigger End-->
-        </div>
+          </div>
+        </div> -->
       </div>
     </div>
   </div>

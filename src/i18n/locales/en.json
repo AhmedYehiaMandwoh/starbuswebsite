@@ -48,7 +48,9 @@
       "SignIn" : "Sign In",
       "SignUp" : "Sign Up",
       "egp" : "EGP",
+      "BUS" : "BUS",
       "captain" : "Captain",
+      "book_now" : "Book Now",
       "showAvailable" : "Show available seats",
       "station_message_required" : "Please select pickup point and dropping point before select any seat",
       "From_Station" : "Pickup Station",
@@ -61,9 +63,24 @@
       "total_pending" : "Total Pending Tickets",
       "login_success" : "Sign in successfully, welcome to starbus",
       "name_message" : "Enter your name",
+      "stations" : "Stations",
+      "login_error" : "Credential Error, Please check it",
+      "available_seats" : "Available Seats",
+      "no_trips_added" : "No Trips has been added in this date",
+      "selected_by_you" : "Selected by You",
+      "booked" : "Booked",
+      "go_to_home" : "Go to home",
+      "closed" : "Closed",
+      "cancelation_policy" : "Return and cancellation policy",
+      "stations_avialable" : "Avaiable Station In Ride",
       "The password format is invalid" : "The password format is invalid.",
       "The tel number has already been taken" : "The tel number has already been taken.",
-      "signup_success" : "Sign up successfully, welcome to starbus"
+      "signup_success" : "Sign up successfully, welcome to starbus",
+      "select_seat" : "Click on Seat to select or deselect",
+      "cancelation_policy_text" : "In the event of a return or cancellation of the reservation, support will be notified 4 hours before the flight time so that the ticket price will not be deducted from you. Thank you very much.",
+      "station_message_required_seats" : "Please select pickup point & dropping point & select any seat"
+
+
 
 
     }

@@ -949,8 +949,8 @@ i {
 }
 
 .logo img {
-    max-width: 170px;
-    max-height: 80px;
+    max-width: 200px;
+    height: 100%;
 }
 
 .menu {
@@ -4867,7 +4867,6 @@ i {
 .seat-for-reserved .seat {
     width: 50px;
     height: 18px;
-    border: 1px solid #979797;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     cursor: pointer;
@@ -4880,7 +4879,8 @@ i {
     top: 2px;
     bottom: 2px;
     width: 4px;
-    border: 1px solid rgba(27, 39, 61, 0.25);
+    border: 1px solid #fff;
+    background-color: #fff;
     right: 7px;
     border-radius: 2px;
 }
@@ -4907,11 +4907,6 @@ i {
     color: #fff !important;
 }
 
-.seat-for-reserved .selected-by-gents .seat {
-    border-color: #554bb9;
-    background: #554bb9;
-    color: #fff !important;
-}
 
 .seat-for-reserved .selected-by-ladies .seat span {
     background: #fff;
@@ -4977,11 +4972,7 @@ i {
     border-color: #fff !important;
 }
 
-.selected-by-gents .seat {
-    color: #fff;
-    border-color: #554bb9 !important;
-    background: #554bb9 !important;
-}
+
 
 .selected-by-gents .seat span {
     background: #fff !important;
@@ -5002,7 +4993,6 @@ i {
     border: 1px solid rgba(27, 39, 61, 0.1);
     border-radius: 5px;
     padding: 20px 15px;
-    position: sticky;
     top: 100px;
 }
 

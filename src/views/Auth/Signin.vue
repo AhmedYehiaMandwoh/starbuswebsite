@@ -94,20 +94,31 @@ export default {
 
         if (response.status === 200) {
           // Sign-in successful
-          localStorage.setItem('user', JSON.stringify(response.data.data.user));
-          localStorage.setItem('access_token', response.data.data.access_token);
-          this.$router.replace('/home').then(() => {
+          if(!response.data.data.user) {
             this.$notify({
-              type: "success",
-              title: this.t('header.login_success'),
+              type: "error",
+              title: this.t('header.login_error'),
             });
-          })
+          }else{
+
+            localStorage.setItem('user', JSON.stringify(response.data.data.user));
+            localStorage.setItem('access_token', response.data.data.access_token);
+            this.$router.replace('/home').then(() => {
+              this.$notify({
+                type: "success",
+                title: this.t('header.login_success'),
+              });
+            })
+          }
 
 
           // Store user data or redirect to the home page
         } else {
+          this.$notify({
+            type: "error",
+              title: this.t('header.login_error'),
+              });
           // Handle invalid credentials or other errors
-          console.error('Sign-in failed:', response.data);
         }
       } catch (error) {
         console.error(error);

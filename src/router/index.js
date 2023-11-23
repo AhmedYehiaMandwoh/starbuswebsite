@@ -47,7 +47,6 @@ const router = createRouter({
       name: 'tickets',
       component: () => import('../views/Tickets.vue'),
       meta: {
-        requiresAuth: true,
         pageTitle: "Tickets",
         breadcrumb: [
           {
@@ -58,7 +57,7 @@ const router = createRouter({
       },
     },
     {
-      path: '/home/ticket/details-seat/:route_id/:from/:to/:uuid',
+      path: '/home/ticket/details-seat/:date/:schedule_id/:route_id/:from/:to/:uuid',
       name: 'ticket',
       component: () => import('../views/TicketDetails.vue'),
       meta: {
@@ -82,6 +81,21 @@ const router = createRouter({
         breadcrumb: [
           {
             text: "dashboard",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/home/invoice/:uuid',
+      name: 'invoice',
+      component: () => import('../views/TicketInvoice.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "invoice",
+        breadcrumb: [
+          {
+            text: "invoice",
             active: true,
           },
         ],
@@ -162,14 +176,15 @@ const router = createRouter({
         ],
       },
     },
-    {
-      path: "/error-404",
-      name: "error-404",
-      component: () => import("@/views/error/Error404.vue"),
-      meta: {
-        layout: "full",
-      },
-    },
+    // {
+    //   path: "/error-404",
+    //   name: "error-404",
+    //   component: () => import("@/views/error/Error404.vue"),
+    // },
+    // {
+    //   path: "/:catchAll(.*)",
+    //   redirect: "error-404",
+    // },
 
   ]
 });

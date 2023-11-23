@@ -117,5 +117,5 @@ export default {
 .vs--searchable .vs__dropdown-toggle {
   height: 40px !important;
 }
-
+  
 </style>
