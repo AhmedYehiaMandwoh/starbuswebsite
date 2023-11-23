@@ -1,14 +1,14 @@
 <template>
     <main>
-        <TopHeader class="cs-hide_print"/>
-        <Navbar class="cs-hide_print"/>
+        <TopHeader class="cs-hide_print" />
+        <Navbar class="cs-hide_print" />
         <!-- Account Section Starts Here -->
         <div class="container">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="invoice-box padding-top padding-bottom" dir="ltr">
-                        <table class="">
+                        <table v-if="locale == 'en'">
                             <tbody>
                                 <tr class="top">
                                     <td colspan="2">
@@ -21,9 +21,9 @@
                                                     </td>
 
                                                     <td>
-                                                        <b> {{ticket.invoice_number}}</b><br>
-                                                        Created: {{ticket.date}}<br>
-                                                        Order ID: {{ticket.order_id}}
+                                                        <b> {{ ticket.invoice_number }}</b><br>
+                                                        {{ t('header.date') }}: {{ ticket.date }}<br>
+                                                        {{ t('header.order_id') }}: {{ ticket.order_id }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -37,8 +37,10 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <span class="ticket_number_text">Ticket Number </span><br>
-                                                        <span class="ticket_number"><b>{{ticket.ticket_number}}</b>
+                                                        <span class="ticket_number_text">{{ ticket.time }}</span><br>
+                                                        <span class="ticket_number_text">{{ t('header.ticket_number')
+                                                        }}</span><br>
+                                                        <span class="ticket_number"><b>{{ ticket.ticket_number }}</b>
                                                         </span>
                                                     </td>
 
@@ -74,26 +76,34 @@
                                 </tr>
 
                                 <tr class="heading">
-                                    <td>From</td>
+                                    <td>{{ t('header.from') }}</td>
 
-                                    <td>To</td>
+                                    <td>{{ t('header.to') }}</td>
                                 </tr>
 
                                 <tr class="details">
-                                    <td>To</td>
+                                    <td>
+                                        <b>{{ from_city.name }}</b><br>
 
-                                    <td>{{ticket.status}}</td>
+                                        {{ from_station.station_name }}
+                                    </td>
+                                    <td>
+                                        <b>{{ to_city.name }}</b><br>
+
+                                        {{ to_station.station_name }}
+                                    </td>
+
                                 </tr>
                                 <tr class="heading">
-                                    <td>Payment Method</td>
+                                    <td>{{ t('header.paymnet_method') }}</td>
 
-                                    <td>Status</td>
+                                    <td>{{ t('header.status') }}</td>
                                 </tr>
 
                                 <tr class="details">
                                     <td>paymob (visa)</td>
 
-                                    <td>{{ticket.status}}</td>
+                                    <td>{{ ticket.status }}</td>
                                 </tr>
 
                                 <tr class="heading">
@@ -103,7 +113,7 @@
                                 </tr>
 
                                 <tr class="item">
-                                    <td>Website design</td>
+                                    <td>{{ t('header.price') }}</td>
 
                                     <td>$300.00</td>
                                 </tr>
@@ -123,7 +133,130 @@
                                 <tr class="total">
                                     <td></td>
 
-                                    <td>Total: {{ticket.route_price}} {{t('header.egp')}}</td>
+                                    <td>{{ t('header.total') }}: {{ ticket.route_price }} {{ t('header.egp') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table v-if="locale == 'ar'">
+                            <tbody>
+                                <tr class="top">
+                                    <td colspan="2">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="title">
+                                                        <img src="/src/assets/images/logoIcon/logo.png" alt="Company logo"
+                                                            style="width: 100%; max-width: 250px">
+                                                    </td>
+
+                                                    <td>
+                                                        <b> {{ ticket.invoice_number }}</b><br>
+                                                        {{ t('header.date') }}: {{ ticket.date }}<br>
+                                                        {{ t('header.order_id') }}: {{ ticket.order_id }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr class="information">
+                                    <td colspan="2">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td>
+                                                        <div class="cs-invoice_btns cs-hide_print">
+                                                            <a href="javascript:window.print()"
+                                                                class="cs-invoice_btn cs-color1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon"
+                                                                    viewBox="0 0 512 512">
+                                                                    <path
+                                                                        d="M384 368h24a40.12 40.12 0 0040-40V168a40.12 40.12 0 00-40-40H104a40.12 40.12 0 00-40 40v160a40.12 40.12 0 0040 40h24"
+                                                                        fill="none" stroke="currentColor"
+                                                                        stroke-linejoin="round" stroke-width="32" />
+                                                                    <rect x="128" y="240" width="256" height="208"
+                                                                        rx="24.32" ry="24.32" fill="none"
+                                                                        stroke="currentColor" stroke-linejoin="round"
+                                                                        stroke-width="32" />
+                                                                    <path
+                                                                        d="M384 128v-24a40.12 40.12 0 00-40-40H168a40.12 40.12 0 00-40 40v24"
+                                                                        fill="none" stroke="currentColor"
+                                                                        stroke-linejoin="round" stroke-width="32" />
+                                                                    <circle cx="392" cy="184" r="24" />
+                                                                </svg>
+                                                                <span>Print</span>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="ticket_number_text">{{ ticket.time }}</span><br>
+                                                        <span class="ticket_number_text">{{ t('header.ticket_number')
+                                                        }}</span><br>
+                                                        <span class="ticket_number"><b>{{ ticket.ticket_number }}</b>
+                                                        </span>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr class="heading">
+                                    <td>{{ t('header.to') }}</td>
+                                    <td>{{ t('header.from') }}</td>
+
+                                </tr>
+
+                                <tr class="details">
+                                    <td>
+                                        <b>{{ to_city.name_ar }}</b><br>
+
+                                        {{ to_station.station_name_ar }}
+                                    </td>
+                                    <td>
+                                        <b>{{ from_city.name_ar }}</b><br>
+
+                                        {{ from_station.station_name_ar }}
+                                    </td>
+
+                                </tr>
+                                <tr class="heading">
+                                    <td>{{ t('header.status') }}</td>
+                                    <td>{{ t('header.paymnet_method') }}</td>
+
+                                </tr>
+
+                                <tr class="details">
+
+                                    <td>{{ ticket.status }}</td>
+                                    <td>paymob (visa)</td>
+                                </tr>
+
+                                <tr class="heading">
+
+                                    <td></td>
+                                    <td>Item</td>
+                                </tr>
+
+                                <tr class="item">
+
+                                    <td>{{ticket.route_price / ticket.passengers}} {{ t('header.egp') }}</td>
+                                    <td>{{ t('header.price') }}</td>
+                                </tr>
+
+                                <tr class="item">
+                                    <td>{{ ticket.passengers }} x</td>
+                                    <td>{{ t('header.seats') }}</td>
+
+                                </tr>
+
+                                <tr class="total">
+
+                                    <td>{{ ticket.route_price }} {{ t('header.egp') }}</td>
+                                    <td>{{ t('header.total') }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -155,7 +288,12 @@ export default {
     },
     data() {
         return {
-            ticket: {}
+            locale: localStorage.getItem("userLocale"),
+            ticket: {},
+            from_city: '',
+            to_city: '',
+            from_station: '',
+            to_station: '',
         }
     },
     methods: {
@@ -175,7 +313,12 @@ export default {
                 );
 
                 if (response.status === 200) {
+                    
                     this.ticket = response.data.data
+                    this.from_city = response.data.data.fromCity
+                    this.to_city = response.data.data.toCity
+                    this.from_station = response.data.data.fromStation
+                    this.to_station = response.data.data.toStation
                     // Store user data or redirect to the home page
                 } else {
                     // Handle invalid credentials or other errors
@@ -282,7 +425,7 @@ export default {
 }
 
 .ticket_number {
-    font-size: 50px;
+    font-size: 60px;
 }
 
 
@@ -300,4 +443,5 @@ export default {
         height: 100%;
         overflow: hidden;
     }
-}</style>
+}
+</style>

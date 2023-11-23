@@ -94,8 +94,8 @@
                                                 <span></span>
                                             </span>
                                         </div>
-                                        <div v-if="seats[2] == 0" @click="getSeat(2, 'seatTwo')" id="seatTwo">
-                                            <span class="seat">
+                                        <div v-if="seats[2] == 0" >
+                                            <span class="seat" @click="getSeat(2, 'seatTwo')" id="seatTwo">
                                                 2
                                                 <span></span>
                                             </span>
@@ -428,6 +428,7 @@ export default {
                 formData.append('to_station', this.to_station);
                 formData.append('booking_seats', this.selected_seats.toString());
                 formData.append('date', this.$route.params.date);
+                formData.append('type', 'web');
                 try {
                     const response = await axios.post('https://mdsapps.net/api/outside/paymnet/store', formData, {
 
