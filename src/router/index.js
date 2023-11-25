@@ -6,18 +6,27 @@ import Auth from "./Auth.js";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    
     {
       path: '/home',
       name: 'home',
       component: HomeView,
     },
     {
-      path: '/about',
+      path: '/home/about',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/About.vue')
+    },
+    {
+      path: '/home/privacy',
+      name: 'privacy',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Privacy.vue')
     },
     {
       path: '/home/signin',
@@ -101,21 +110,21 @@ const router = createRouter({
         ],
       },
     },
-    {
-      path: '/home/dashboard/profile',
-      name: 'profile',
-      component: () => import('../views/Dashboard/Profile.vue'),
-      meta: {
-        requiresAuth: true,
-        pageTitle: "Profile",
-        breadcrumb: [
-          {
-            text: "Profile",
-            active: true,
-          },
-        ],
-      },
-    },
+    // {
+    //   path: '/home/dashboard/profile',
+    //   name: 'profile',
+    //   component: () => import('../views/Dashboard/Profile.vue'),
+    //   meta: {
+    //     requiresAuth: true,
+    //     pageTitle: "Profile",
+    //     breadcrumb: [
+    //       {
+    //         text: "Profile",
+    //         active: true,
+    //       },
+    //     ],
+    //   },
+    // },
     {
       path: '/home/dashboard/mytickets',
       name: 'mytickets',
@@ -194,7 +203,7 @@ router.beforeEach((to, from, next) => {
     return;
   }
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (Auth.check()) {
+    if (localStorage.getItem('access_token')) {
       next();
       return;
     } else {

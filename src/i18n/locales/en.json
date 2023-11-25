@@ -74,21 +74,49 @@
       "total" : "total",
       "from" : "From",
       "price" : "Price",
+      "view" : "View",
+      "have_account" : "Have an account ?",
+      "nationality" : "nationality",
       "seats" : "Seats",
+      "invoice_number" : "Invoice Number",
+      "time" : "Moving Time",
+      "Contact_Info" : "Contact Info",
+      "about_message" : "offers affordable, quality, convenient, and reliable everyday bus rides. Is the premium alternative to public transportation in Egypt. Through the app, customers can book fixed rate affordable rides on existing routes.",
       "to" : "To",
       "paymnet_method" : "Paymnet Method",
+      "aboutStar" : "About starbus company",
       "status" : "Status",
+      "Privacy_Refund" : "Privacy Policy & Refund",
       "order_id" : "Order ID",
       "ticket_number" : "Ticket Number",
       "cancelation_policy" : "Return and cancellation policy",
       "stations_avialable" : "Avaiable Station In Ride",
       "The password format is invalid" : "The password format is invalid.",
+      "The country id field is required" : "The country id field is required",
       "The tel number has already been taken" : "The tel number has already been taken.",
       "signup_success" : "Sign up successfully, welcome to starbus",
       "select_seat" : "Click on Seat to select or deselect",
-      "cancelation_policy_text" : "In the event of a return or cancellation of the reservation, support will be notified 4 hours before the flight time so that the ticket price will not be deducted from you. Thank you very much.",
-      "station_message_required_seats" : "Please select pickup point & dropping point & select any seat"
+      "The password must be at least 8 characters" : "The password must be at least 8 characters",
+      "cancelation_policy_text" : "You cannot cancel the reservation or refund the ticket price 4 hours before the trip. you can cancel or change the reservation 12 hours before the trip, and deduct 35% from each ticket. 24 hours before the trip, 20% will be deducted from the ticket pricemore than 24 hours before the trip, the total amount will be refunded.",
+      "station_message_required_seats" : "Please select pickup point & dropping point & select any seat",
+      "mission_vision" : "Mission Statement & Vision",
+      "our_aim" : "We aim to build an ecosystem for transportation around the globe which provides our users with comfort, time-saving , and money-saving by safety and premium alternatives of public transportation.",
+      "our_mission" : "our mission is delivering a trustworthy, customer-obsessed end-to-end experience for Customers and Captains through offering empathetic excellent experience that is accessible, reliable and consistent across all touchpoints.",
+      "bag_loss" : "Bag Loss",
+      "Printing_electronic_tickets" : "Printing electronic tickets",
+      "Printing_electronic_tickets_text" : "The customer prints his tickets after paying through our website on plain paper and can ride directly with this voucher.",
+      "bag_loss_text" : "If you lose your luggage and it becomes clear to us that it was our fault from us, you will be compensated with a maximum of 500 pounds.",
+      "total_wallet" : "Total Wallet",
+      "total_pending_wallet" : "Total Refund Ticket",
+      "total_points" : "Total Points",
+      "Find_Tickets" : "Find Tickets",
+      "total_pending_points" : "Total Pending Points"
 
+
+
+
+      
+      
 
 
 

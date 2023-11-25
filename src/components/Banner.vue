@@ -4,7 +4,6 @@
       <div class="banner-wrapper">
         <div class="banner-content">
           <h1 class="title">{{ t('header.get_ticket') }}</h1>
-          <a href="tickets.html" class="cmn--btn">Get ticket now</a>
         </div>
         <div class="ticket-form-wrapper">
           <div class="ticket-header nav-tabs nav border-0">
@@ -33,7 +32,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form--group">
-                    <button @click="searchTickets">Find Tickets</button>
+                    <button @click="searchTickets">{{ t('header.Find_Tickets') }}</button>
                   </div>
                 </div>
               </div>
@@ -117,5 +116,5 @@ export default {
 .vs--searchable .vs__dropdown-toggle {
   height: 40px !important;
 }
-  
+
 </style>

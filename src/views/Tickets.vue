@@ -76,7 +76,7 @@
               </div>
             </form>
           </div> -->
-          <div class="col-md-12" v-if="all_tickets.length > 0">
+          <div class="col-md-12" v-if="this.no_data == false">
             <div class="ticket-wrapper">
 
               <div class="ticket-item" v-for="ticket in all_tickets" :key="ticket.Route_id" v-if="all_tickets">
@@ -117,7 +117,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12 mt-3" v-else>
+          <div class="col-md-12 mt-3" v-if="no_data == true">
             <div class="text-center">
               <div class="card">
                 <div class="row">
@@ -160,6 +160,7 @@ export default {
   data() {
     return {
       all_tickets: [],
+      no_data: false,
       locale: localStorage.getItem("userLocale")
     }
   },
@@ -184,6 +185,9 @@ export default {
         if (response.status === 200) {
           this.all_tickets = response.data.data
           console.log(response.data.data);
+          if(this.all_tickets.length <= 0) {
+            this.no_data = true
+          }
           // Store user data or redirect to the home page
         } else {
           // Handle invalid credentials or other errors

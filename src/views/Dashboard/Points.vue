@@ -12,24 +12,50 @@
                     </div>
                     <div class="col-md-9">
                         <div class="dashboard-wrapper">
+                            <div class="row pb-60 gy-4 justify-content-center">
+                                <div class="col-lg-4 col-md-6 col-sm-10">
+                                    <div class="dashboard-widget">
+                                        <div class="dashboard-widget__content">
+                                            <p>{{ t('header.total_points') }}</p>
+                                            <h3 class="title">0</h3>
+                                        </div>
+                                        <div class="dashboard-widget__icon">
+                                            <i class="las la-coins"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-lg-4 col-md-6 col-sm-10">
+                                    <div class="dashboard-widget">
+                                        <div class="dashboard-widget__content">
+                                            <p>{{ t('header.total_pending_points') }}</p>
+                                            <h3 class="title">0</h3>
+                                        </div>
+                                        <div class="dashboard-widget__icon">
+                                            <i class="las la-coins"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="booking-table-wrapper">
                                 <table class="booking-table">
                                     <thead>
                                         <tr>
-                                            <th>ticket_number</th>
-                                            <th>AC / Non-Ac</th>
-                                            <th>Starting Point</th>
-                                            <th>Dropping Point</th>
-                                            <th>Journey Date</th>
-                                            <th>Pickup Time</th>
-                                            <th>Booked Seats</th>
-                                            <th>Status</th>
-                                            <th>Fare</th>
-                                            <th>Action</th>
+                                            <th>{{t('header.order_id')}}</th>
+                                            <th>{{t('header.From_City')}}</th>
+                                            <th>{{t('header.To_City')}}</th>
+                                            <th>{{t('header.date')}}</th>
+                                            <th>{{t('header.seats')}}</th>
+                                            <th>{{t('header.time')}}</th>
+                                            <th>{{t('header.invoice_number')}}</th>
+                                            <th>{{t('header.status')}}</th>
+                                            <th>{{t('header.price')}}</th>
+                                            <th>{{t('header.ticket_number')}}</th>
+                                            <th>{{t('header.view')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td class="ticket-no" data-label="PNR Number">CDQKQAB68G</td>
                                             <td class="" data-label="AC / Non-Ac">Non-Ac</td>
                                             <td class="pickup" data-label="Starting Point">Kansas</td>
@@ -49,7 +75,7 @@
                                                             class="las la-info-circle"></i></a>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

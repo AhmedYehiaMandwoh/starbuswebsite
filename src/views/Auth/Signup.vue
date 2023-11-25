@@ -21,24 +21,11 @@
                   required>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form--group phone">
-                <label for="phone">{{ t('header.phone') }}</label>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text mobile-code border-0 h-40">+20</span>
-                  <input type="hidden" name="mobile_code" value="20">
-                  <input type="hidden" name="country_code" value="EG">
-                  <input type="number" name="mobile" id="mobile" v-model="tel_number" class="form--control ps-2  checkUser"
-                    :placeholder="t('header.phone_message')">
-                </div>
-                <small class="text-danger mobileExist"></small>
-              </div>
-
-            </div>
+            
             <div class="col-md-6">
               <div class="form--group">
                 <label for="password">{{ t('header.gender') }}</label>
-                    <select class="form--control" name="gender" v-model="gender">
+                    <select class="form--control" name="gender" v-model="gender" required>
                       <option value="male">{{ t('header.male') }}</option>
                       <option value="female">{{ t('header.female') }}</option>
                     </select>
@@ -46,10 +33,30 @@
               </div>
             </div>
             <div class="col-md-6">
+              <div class="form--group phone">
+                <label for="phone">{{ t('header.phone') }}</label>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text mobile-code border-0 h-40">+20</span>
+                  <input type="hidden" name="country_code" v-model="country_code" >
+                  <input type="number" name="mobile" id="mobile" v-model="tel_number" class="form--control ps-2" autocomplete="off"
+                    :placeholder="t('header.phone_message')" required >
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-6">
               <div class="form--group">
                 <label for="password">{{ t('header.password') }}</label>
                 <input id="password" type="password" name="password" v-model="password" class="form--control"
                   :placeholder="t('header.password_message')" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form--group">
+                <label for="password">{{ t('header.nationality') }}</label>
+                <v-select :options="all_countries" :reduce="country => country.id" label="name_en" v-model="country_id"  :rules="[required]" v-if="locale == 'en'"  />
+                <v-select :options="all_countries" :reduce="country => country.id" label="name_ar" v-model="country_id"  :rules="[required]" v-if="locale == 'ar'"  />
+
               </div>
             </div>
             
@@ -69,7 +76,7 @@
             </div>
             <div class="col-md-12">
               <div class="account-page-link">
-                <p>{{ t('header.dont_have_Account') }} <a href="register.html">{{ t('header.sign_up') }}</a></p>
+                <p>{{ t('header.have_account') }} <router-link to="/home/signin" >{{ t('header.sign_in') }}</router-link></p>
               </div>
             </div>
           </form>
@@ -85,19 +92,27 @@ import Navbar from '../../components/Navbar.vue';
 import TopHeader from '../../components/TopHeader.vue'
 import Footer from '../../components/Footer.vue'
 import { useI18n } from 'vue-i18n'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 import axios from 'axios'
 export default {
   components: {
     Navbar,
     TopHeader,
-    Footer
+    Footer,
+    vSelect
   },
   data() {
     return {
-      name: null,
-      gender: null,
-      tel_number: null,
-      password: null
+      name: '',
+      gender: '',
+      tel_number: '',
+      password: '',
+      country_code: '+20',
+      country_id: '',
+      all_countries: [],
+      locale: localStorage.getItem("userLocale")
+
     }
   },
   methods: {
@@ -111,10 +126,12 @@ export default {
           name: this.name,
           tel_number: this.tel_number,
           gender: this.gender,
-          password: this.password
+          password: this.password,
+          country_id: this.country_id,
+          country_code: this.country_code
         });
         console.log(response.data.data);
-        if (response.data.status === 201) {
+        if (response.data.status === 200) {
           this.$router.replace('/home/signin').then(() => {
             this.$notify({
               type: "success",
@@ -123,6 +140,12 @@ export default {
           })
         }
         if (response.data.status === 400) {
+          if(response.data.data.country_id) {
+            this.$notify({
+              type: "error",
+              title: this.t(`header.${response.data.data.country_id[0]}`),
+            });
+          }
           if(response.data.data.password) {
             this.$notify({
               type: "error",
@@ -139,7 +162,28 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+    async getAllCountries() {
+     
+      try {
+        const response = await axios.get('https://mdsapps.net/api/outside/countries/getAllCountries');
+
+        if (response.status === 200) {
+          this.all_countries = response.data.countries
+          // Store user data or redirect to the home page
+        } else {
+          // Handle invalid credentials or other errors
+          console.error('Sign-in failed:', response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    required: (v) => !!v || "field required"
+
+  },
+  mounted() {
+    this.getAllCountries()
   },
   setup() {
     const { t } = useI18n()

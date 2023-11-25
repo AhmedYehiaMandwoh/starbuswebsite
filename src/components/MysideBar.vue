@@ -21,10 +21,10 @@
                     <i class="las la-coins mx-1" :class="this.$route.name == 'points' ? 'activeside' : ''"></i>
                     <router-link to="/home/dashboard/points" :class="this.$route.name == 'points' ? 'activeside' : ''">{{ t('header.points') }}</router-link>
                 </li>
-                <li :class="this.$route.name == 'profile' ? 'activeside' : ''">
+                <!-- <li :class="this.$route.name == 'profile' ? 'activeside' : ''">
                     <i class="las la-cog mx-1" :class="this.$route.name == 'profile' ? 'activeside' : ''"></i>
                     <router-link to="/home/dashboard/profile" :class="this.$route.name == 'profile' ? 'activeside' : ''">{{ t('header.profile') }}</router-link>
-                </li>
+                </li> -->
                 <li :class="this.$route.name == 'changepassword' ? 'activeside' : ''">
                     <i class="las la-key mx-1" :class="this.$route.name == 'changepassword' ? 'activeside' : ''"></i>
                     <router-link to="/home/dashboard/changepassword" :class="this.$route.name == 'changepassword' ? 'activeside' : ''">{{ t('header.change_password') }}</router-link>

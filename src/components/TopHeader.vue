@@ -5,7 +5,7 @@
         <ul class="left-content">
           <li>
             <i class="las la-phone"></i>
-            <span class="">201099624655</span>
+            <span dir="rtl">01121244989 2+</span>
 
           </li>
           <li>

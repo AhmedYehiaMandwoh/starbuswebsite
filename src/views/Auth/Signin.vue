@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-12">
               <div class="account-page-link">
-                <p>{{ t('header.dont_have_Account') }} <a href="register.html">{{ t('header.sign_up') }}</a></p>
+                <p>{{ t('header.dont_have_Account') }} <router-link to="/home/signup">{{ t('header.sign_up') }}</router-link></p>
               </div>
             </div>
           </form>
