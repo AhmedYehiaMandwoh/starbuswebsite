@@ -6228,3 +6228,12 @@ div[class*="col"]:nth-child(3n + 3) .dashboard-widget .dashboard-widget__icon {
     left: 10px;
     cursor: pointer;
   }
+
+  .vti__dropdown {
+    padding: 4px !important;
+  }
+
+  .vue-tel-input {
+    border-radius: 4px !important;
+    border: 1px solid #e8e9eb !important;
+  }

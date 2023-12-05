@@ -18,8 +18,8 @@
             <div class="col-lg-12">
               <div class="form--group">
                 <label for="phone">{{ t('header.phone') }}</label>
-                <input id="phone" name="phone" type="text" class="form--control" v-model="phone"
-                  :placeholder="t('header.phone_message')" pattern="01[0-9]{9}" required>
+                <vue-tel-input :value="phone" @input="onInput"
+                    :onlyCountries="['EG']"></vue-tel-input>
               </div>
             </div>
             <div class="col-lg-12">
@@ -70,11 +70,14 @@ import TopHeader from '../../components/TopHeader.vue'
 import Footer from '../../components/Footer.vue'
 import { useI18n } from 'vue-i18n'
 import axios from 'axios'
+import { VueTelInput } from 'vue3-tel-input'
+import 'vue3-tel-input/dist/vue3-tel-input.css'
 export default {
   components: {
     Navbar,
     TopHeader,
-    Footer
+    Footer,
+    VueTelInput
   },
   data() {
     return {
@@ -106,13 +109,12 @@ export default {
       this.signIn();
     },
     async signIn() {
-
+      console.log(this.phone);
       try {
         const response = await axios.post('https://mdsapps.net/api/outside/login', {
           tel_number: this.phone,
           password: this.password
         });
-
         if (response.status === 200) {
           // Sign-in successful
           if (!response.data.data.user) {
@@ -146,6 +148,12 @@ export default {
             type: "error",
             title: this.t('header.login_error'),
           });
+      }
+    },
+
+    onInput(phone, phoneObject, input) {
+      if (phoneObject?.formatted) {
+        this.phone = phoneObject.formatted.replace(/ /g, '')
       }
     }
   },

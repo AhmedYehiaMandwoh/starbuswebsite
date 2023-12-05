@@ -35,11 +35,7 @@
               <div class="form--group phone">
                 <label for="phone">{{ t('header.phone') }}</label>
                 <div class="input-group flex-nowrap">
-                  <!-- <span class="input-group-text mobile-code border-0 h-40">+20</span> -->
-                  <!-- <input type="hidden" name="country_code" v-model="country_code" > -->
-                  <!-- <input type="number" name="mobile" id="mobile" v-model="tel_number" class="form--control ps-2" autocomplete="off"
-                    :placeholder="t('header.phone_message')" required > -->
-                    <vue-tel-input v-model="tel_number"
+                    <vue-tel-input :value="tel_number" @input="onInput"
                     :onlyCountries="['EG']"></vue-tel-input>
                 </div>
               </div>
@@ -121,13 +117,13 @@ export default {
   },
   data() {
     return {
-      name: '',
-      gender: '',
-      tel_number: '',
-      password: '',
-      password_confirm: '',
+      name: null,
+      gender: null,
+      tel_number: null,
+      password: null,
+      password_confirm: null,
       country_code: '+20',
-      country_id: '',
+      country_id: null,
       openEyePass: false,
       openEyeConfirm: false,
       all_countries: [],
@@ -173,7 +169,7 @@ export default {
       this.signUp();
     },
     async signUp() {
-
+      console.log(this.tel_number);
       try {
         const response = await axios.post('https://mdsapps.net/api/outside/signup', {
           name: this.name,
@@ -214,6 +210,12 @@ export default {
         }
       } catch (error) {
         console.error(error);
+      }
+    },
+    onInput(phone, phoneObject, input) {
+      if (phoneObject?.formatted) {
+        this.tel_number = phoneObject.formatted.replace(/ /g, '')
+
       }
     },
     async getAllCountries() {
