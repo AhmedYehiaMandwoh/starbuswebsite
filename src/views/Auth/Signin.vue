@@ -4,8 +4,7 @@
     <Navbar />
 
     <!-- Account Section Starts Here -->
-    <section class="account-section bg_img"
-      style="background: url(/src/assets/images/frontend/sign_in/login.jpg); background-size: contain; background-position: left;">
+    <section class="account-section bg_img">
       <div class="account-wrapper">
         <div class="account-form-wrapper">
           <div class="account-header">
@@ -20,14 +19,16 @@
               <div class="form--group">
                 <label for="phone">{{ t('header.phone') }}</label>
                 <input id="phone" name="phone" type="text" class="form--control" v-model="phone"
-                  :placeholder="t('header.phone_message')" required>
+                  :placeholder="t('header.phone_message')" pattern="01[0-9]{9}" required>
               </div>
             </div>
             <div class="col-lg-12">
-              <div class="form--group">
+              <div class="form--group passwordEye">
                 <label for="password">{{ t('header.password') }}</label>
-                <input id="password" type="password" name="password" v-model="password" class="form--control"
+                <input id="password" type="password" name="password" v-model="password" class="form--control "
                   :placeholder="t('header.password_message')" required>
+                <i class="fa fa-eye" v-if="!openEye" @click="showPass"></i>
+                <i class="fa fa-eye-slash" v-if="openEye" @click="hidePass"></i>
               </div>
             </div>
             <div class="col-lg-12">
@@ -50,7 +51,8 @@
             </div>
             <div class="col-md-12">
               <div class="account-page-link">
-                <p>{{ t('header.dont_have_Account') }} <router-link to="/home/signup">{{ t('header.sign_up') }}</router-link></p>
+                <p>{{ t('header.dont_have_Account') }} <router-link to="/home/signup">{{ t('header.sign_up')
+                }}</router-link></p>
               </div>
             </div>
           </form>
@@ -59,7 +61,7 @@
     </section>
     <!-- Account Section Ends Here -->
     <Footer />
-    
+
   </main>
 </template>
 <script>
@@ -78,9 +80,28 @@ export default {
     return {
       phone: null,
       password: null,
+      openEye: false,
     }
   },
   methods: {
+    showPass() {
+      this.openEye = true;
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    },
+    hidePass() {
+      this.openEye = false;
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    },
     onSubmit() {
       this.signIn();
     },
@@ -94,12 +115,12 @@ export default {
 
         if (response.status === 200) {
           // Sign-in successful
-          if(!response.data.data.user) {
+          if (!response.data.data.user) {
             this.$notify({
               type: "error",
               title: this.t('header.login_error'),
             });
-          }else{
+          } else {
 
             localStorage.setItem('user', JSON.stringify(response.data.data.user));
             localStorage.setItem('access_token', response.data.data.access_token);
@@ -116,12 +137,15 @@ export default {
         } else {
           this.$notify({
             type: "error",
-              title: this.t('header.login_error'),
-              });
+            title: this.t('header.login_error'),
+          });
           // Handle invalid credentials or other errors
         }
       } catch (error) {
-        console.error(error);
+        this.$notify({
+            type: "error",
+            title: this.t('header.login_error'),
+          });
       }
     }
   },

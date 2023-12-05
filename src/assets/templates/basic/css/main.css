@@ -1,7 +1,8 @@
 @font-face {
     font-family: myFirstFont;
     src: url(/src/assets/templates/basic/fonts/Cairo-Regular.ttf);
-  }
+}
+
 :root {
     --main-color: #F29100;
 }
@@ -341,6 +342,8 @@ ul li {
 }
 
 .bg_img {
+    background: url('@/assets/images/frontend/sign_in/login.jpg'); 
+    background-size: contain; background-position: left;
     background-repeat: no-repeat !important;
 }
 
@@ -1411,6 +1414,7 @@ i {
 .header-top-area .right-content .header-login li .sign-in {
     color: #777;
 }
+
 .header-top-area .right-content .header-login li .sign-in:hover {
     color: var(--main-color);
 }
@@ -6096,15 +6100,16 @@ div[class*="col"]:nth-child(3n + 3) .dashboard-widget .dashboard-widget__icon {
 
 .english .select2-results {
     text-align: left;
- }
+}
+
 .english .select2-results__options {
     text-align: left !important;
- }
+}
 
 
- .english .select2-results__option--selectable {
+.english .select2-results__option--selectable {
     text-align: left !important;
- }
+}
 
 
 
@@ -6118,18 +6123,23 @@ div[class*="col"]:nth-child(3n + 3) .dashboard-widget .dashboard-widget__icon {
     color: var(--main-color);
     z-index: 11;
 }
-.arabic .custom--checkbox label{
-   margin-right: 7px;
+
+.arabic .custom--checkbox label {
+    margin-right: 7px;
 }
-.arabic .header-top-area .right-content .header-login li i{
-   margin-left: 5px;
+
+.arabic .header-top-area .right-content .header-login li i {
+    margin-left: 5px;
 }
-.arabic .header-top-area .left-content li i{
-   margin-left: 3px;
+
+.arabic .header-top-area .left-content li i {
+    margin-left: 3px;
 }
-.arabic .phone .input-group{
+
+.arabic .phone .input-group {
     direction: ltr;
 }
+
 .arabic .booking-table thead tr th:first-child {
     border-radius: 0 15px 0 0;
 }
@@ -6143,3 +6153,78 @@ div[class*="col"]:nth-child(3n + 3) .dashboard-widget .dashboard-widget__icon {
     padding-right: 20px;
     padding-bottom: 3px;
 }
+
+
+
+@media (max-width: 575.98px) {
+    .mobile-view {
+        display: block;
+    }
+
+    .arabic .menu li.has-sub-menu>a::after {
+        left: 30px;
+        right: auto;
+    }
+
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .mobile-view {
+        display: block;
+    }
+
+    .arabic .menu li.has-sub-menu>a::after {
+        left: 30px;
+        right: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .mobile-view {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .mobile-view {
+        display: none;
+    }
+}
+
+
+@media (min-width: 1200px) { 
+    .mobile-view {
+        display: none;
+    }
+ }
+
+
+
+ .passwordEye {
+    position: relative;
+  }
+  
+  .english .passwordEye .fa {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .english .passwordEye .fa {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .arabic .passwordEye .fa {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    cursor: pointer;
+  }
+  .arabic .passwordEye .fa {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    cursor: pointer;
+  }

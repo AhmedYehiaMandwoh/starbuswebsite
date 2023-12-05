@@ -3,8 +3,7 @@
     <TopHeader />
     <Navbar />
     <!-- Account Section Starts Here -->
-    <section class="account-section bg_img"
-      style="background: url(/src/assets/images/frontend/sign_in/login.jpg); background-size: contain; background-position: left;">
+    <section class="account-section bg_img" >
       <div class="account-wrapper">
         <div class="account-form-wrapper">
           <div class="account-header">
@@ -36,22 +35,35 @@
               <div class="form--group phone">
                 <label for="phone">{{ t('header.phone') }}</label>
                 <div class="input-group flex-nowrap">
-                  <span class="input-group-text mobile-code border-0 h-40">+20</span>
-                  <input type="hidden" name="country_code" v-model="country_code" >
-                  <input type="number" name="mobile" id="mobile" v-model="tel_number" class="form--control ps-2" autocomplete="off"
-                    :placeholder="t('header.phone_message')" required >
+                  <!-- <span class="input-group-text mobile-code border-0 h-40">+20</span> -->
+                  <!-- <input type="hidden" name="country_code" v-model="country_code" > -->
+                  <!-- <input type="number" name="mobile" id="mobile" v-model="tel_number" class="form--control ps-2" autocomplete="off"
+                    :placeholder="t('header.phone_message')" required > -->
+                    <vue-tel-input v-model="tel_number"
+                    :onlyCountries="['EG']"></vue-tel-input>
                 </div>
               </div>
 
             </div>
             <div class="col-md-6">
-              <div class="form--group">
+              <div class="form--group passwordEye">
                 <label for="password">{{ t('header.password') }}</label>
                 <input id="password" type="password" name="password" v-model="password" class="form--control"
                   :placeholder="t('header.password_message')" required>
+                  <i class="fa fa-eye" v-if="!openEyePass" @click="showPass('password')"></i>
+                <i class="fa fa-eye-slash" v-if="openEyePass" @click="hidePass('password')"></i>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <div class="form--group passwordEye">
+                <label for="password">{{ t('header.password_confirm') }}</label>
+                <input id="password_confirm" type="password" name="password" v-model="password_confirm" class="form--control"
+                  :placeholder="t('header.password_confirm')" required>
+                  <i class="fa fa-eye" v-if="!openEyeConfirm" @click="showPass('password_confirm')"></i>
+                <i class="fa fa-eye-slash" v-if="openEyeConfirm" @click="hidePass('password_confirm')"></i>
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form--group">
                 <label for="password">{{ t('header.nationality') }}</label>
                 <v-select :options="all_countries" :reduce="country => country.id" label="name_en" v-model="country_id"  :rules="[required]" v-if="locale == 'en'"  />
@@ -95,12 +107,17 @@ import { useI18n } from 'vue-i18n'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 import axios from 'axios'
+import { ref } from 'vue'
+import { VueTelInput } from 'vue3-tel-input'
+import 'vue3-tel-input/dist/vue3-tel-input.css'
+
 export default {
   components: {
     Navbar,
     TopHeader,
     Footer,
-    vSelect
+    vSelect,
+    VueTelInput
   },
   data() {
     return {
@@ -108,14 +125,50 @@ export default {
       gender: '',
       tel_number: '',
       password: '',
+      password_confirm: '',
       country_code: '+20',
       country_id: '',
+      openEyePass: false,
+      openEyeConfirm: false,
       all_countries: [],
       locale: localStorage.getItem("userLocale")
 
     }
   },
   methods: {
+    showPass(elementID) {
+      if(elementID == 'password') {
+        this.openEyePass = true;
+
+      }
+      if(elementID == 'password_confirm') {
+        this.openEyeConfirm = true;
+
+      }
+      var x = document.getElementById('' + elementID + '')
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    },
+    hidePass(elementID) {
+      if(elementID == 'password') {
+        this.openEyePass = false;
+
+      }
+      if(elementID == 'password_confirm') {
+        this.openEyeConfirm = false;
+
+      }
+      var x = document.getElementById('' + elementID + '')
+
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    },
     onSubmit() {
       this.signUp();
     },
@@ -186,6 +239,8 @@ export default {
     this.getAllCountries()
   },
   setup() {
+    const phone = ref(null);
+
     const { t } = useI18n()
     return { t }
   }

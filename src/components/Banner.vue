@@ -27,7 +27,7 @@
                     <option value="">{{ t('header.date') }}</option>
 
                     <input type="date" name="date_of_journey" class="form--control datepicker" v-model="date" required
-                      placeholder="Departure Date" autocomplete="off">
+                      placeholder="Departure Date" :min="new Date().toISOString().split('T')[0]" autocomplete="off">
                   </div>
                 </div>
                 <div class="col-md-6">
