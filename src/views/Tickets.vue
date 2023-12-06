@@ -173,7 +173,7 @@ export default {
       formData.append('to', this.$route.params.to);
       formData.append('date', this.$route.params.date);
       try {
-        const response = await axios.post('https://mdsapps.net/api/outside/searchRide/get', formData, {
+        const response = await axios.post('https://admin.starbusegypt.com/api/outside/searchRide/get', formData, {
 
           headers: {
             Authorization: `Bearer ${token}`

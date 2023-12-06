@@ -335,7 +335,7 @@ export default {
             formData.append('route_id', this.$route.params.route_id);
             formData.append('schedule_id', this.$route.params.schedule_id);
             try {
-                const response = await axios.post('https://mdsapps.net/api/outside/RideBusSeats/getBusSeatsByScheduleInRoute', formData, {
+                const response = await axios.post('https://admin.starbusegypt.com/api/outside/RideBusSeats/getBusSeatsByScheduleInRoute', formData, {
 
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -364,7 +364,7 @@ export default {
             formData.append('fromCity', this.$route.params.from);
             formData.append('toCity', this.$route.params.to);
             try {
-                const response = await axios.post('https://mdsapps.net/api/outside/searchRide/get-station', formData, {
+                const response = await axios.post('https://admin.starbusegypt.com/api/outside/searchRide/get-station', formData, {
 
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -430,7 +430,7 @@ export default {
                 formData.append('date', this.$route.params.date);
                 formData.append('type', 'web');
                 try {
-                    const response = await axios.post('https://mdsapps.net/api/outside/paymnet/store', formData, {
+                    const response = await axios.post('https://admin.starbusegypt.com/api/outside/paymnet/store', formData, {
 
                         headers: {
                             Authorization: `Bearer ${token}`
