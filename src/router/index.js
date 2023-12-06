@@ -34,6 +34,22 @@ const router = createRouter({
       component: () => import('../views/Privacy.vue')
     },
     {
+      path: '/home/private',
+      name: 'Private',
+
+      component: () => import('../views/Private.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "Private",
+        breadcrumb: [
+          {
+            text: "Private",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/home/signin',
       name: 'signin',
       // route level code-splitting

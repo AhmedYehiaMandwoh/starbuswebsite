@@ -15,6 +15,9 @@
           <li>
             <router-link to="/home/privacy">{{ t("header.Privacy_Refund") }}</router-link>
           </li>
+          <li>
+            <router-link to="/home/private">{{ t("header.private_trip") }}</router-link>
+          </li>
 
 
           <li class="has-sub-menu" @click="openMenu('sub_menu')">
