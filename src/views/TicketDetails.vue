@@ -16,38 +16,52 @@
 
                                 <div class="col-md-12">
                                     <option value="">{{ t('header.From_Station') }}</option>
-                            
+
 
                                     <v-select :options="FromStation" :reduce="fromStation => fromStation.id"
-                                        label="station_name" v-model="from_station" required>
+                                        label="station_name" v-model="from_station" required v-if="locale == 'en'">
                                         <template #option="option" v-if="locale == 'en'">
                                             <span class="d-flex justify-content-between">
                                                 <span>{{ option.station_name }}</span>
-                                                <span>{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                                <span>{{ option.station_time.split('-')[0] }} {{
+                                                    t('header.' + option.station_time.split('-')[1]) }}</span>
                                             </span>
                                         </template>
+
+                                    </v-select>
+                                    <v-select :options="FromStation" :reduce="fromStation => fromStation.id"
+                                        label="station_name_ar" v-model="from_station" required v-if="locale == 'ar'">
+
                                         <template #option="option" v-if="locale == 'ar'">
                                             <span class="d-flex justify-content-between">
-                                                <span dir="rtl">{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                                <span dir="rtl">{{ option.station_time.split('-')[0] }} {{
+                                                    t('header.' + option.station_time.split('-')[1]) }}</span>
                                                 <span>{{ option.station_name_ar }} </span>
                                             </span>
                                         </template>
+
                                     </v-select>
-                                 
+
                                 </div>
                                 <div class="col-md-12">
                                     <option value="">{{ t('header.To_Station') }}</option>
-                                    <v-select :options="ToStation" :reduce="toStation => toStation.id"
-                                        label="station_name" v-model="to_station" required>
-                                        <template #option="option" v-if="locale == 'en'">
+                                    <v-select :options="ToStation" :reduce="toStation => toStation.id" label="station_name"
+                                        v-model="to_station" required v-if="locale == 'en'">
+                                        <template #option="option">
                                             <span class="d-flex justify-content-between">
                                                 <span>{{ option.station_name }} </span>
-                                                <span>{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                                <span>{{ option.station_time.split('-')[0] }} {{
+                                                    t('header.' + option.station_time.split('-')[1]) }}</span>
                                             </span>
                                         </template>
-                                        <template #option="option" v-if="locale == 'ar'">
+                                    </v-select>
+                                    <v-select :options="ToStation" :reduce="toStation => toStation.id"
+                                        label="station_name_ar" v-model="to_station" required v-if="locale == 'ar'">
+
+                                        <template #option="option">
                                             <span class="d-flex justify-content-between">
-                                                <span dir="rtl">{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                                <span dir="rtl">{{ option.station_time.split('-')[0] }} {{
+                                                    t('header.' + option.station_time.split('-')[1]) }}</span>
                                                 <span>{{ option.station_name_ar }} </span>
                                             </span>
                                         </template>
