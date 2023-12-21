@@ -22,8 +22,8 @@
                                         label="station_name" v-model="from_station" required>
                                         <template #option="option" v-if="locale == 'en'">
                                             <span class="d-flex justify-content-between">
+                                                <span>{{ option.station_name }}</span>
                                                 <span>{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
-                                                <span>{{ option.station_time }}</span>
                                             </span>
                                         </template>
                                         <template #option="option" v-if="locale == 'ar'">
