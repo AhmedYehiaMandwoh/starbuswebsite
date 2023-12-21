@@ -14,7 +14,7 @@
                   <div class="col-md-12">
                     <div class="account-header m-0">
                       <div class="left-content">
-                        <h3 class="title">{{ t('header.private_trip') }} </h3><span>{{ t('header.private_trip_message')
+                        <h3 class="title">{{ t('header.business_trip') }} </h3><span>{{ t('header.business_trip_message')
                         }}</span>
                       </div>
                     </div>
@@ -32,20 +32,18 @@
                       v-if="locale == 'ar'" />
                     <v-select :options="all_cities" :reduce="city => city.id" label="name" v-model="to_city" required
                       v-if="locale == 'en'" />
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form--group">
-                      <label for="remember">{{ t('header.type') }}</label>
-                      <select name="type" id="type" class="form--control" v-model="type" required>
-                        <option value="one_way">{{ t('header.One_way') }}</option>
-                        <option value="round_trip">{{ t('header.Round_Trip') }}</option>
-                      </select>
                     </div>
-                  </div>
+                    <div class="col-md-6">
+                      <div class="form--group">
+                        <label for="remember">{{ t('header.name') }}</label>
+                        <input type="text" class="form--control" v-model="name" required>
+  
+                      </div>
+                    </div>
                   <div class="col-md-6">
                     <div class="form--group">
-                      <label for="remember">{{ t('header.name') }}</label>
-                      <input type="text" class="form--control" v-model="name" required>
+                      <label for="remember">{{ t('header.email') }}</label>
+                      <input type="email" class="form--control" v-model="email" required>
 
                     </div>
                   </div>
@@ -60,11 +58,28 @@
                     <div class="form--group">
                       <label>{{ t('header.bus_type') }}</label>
                       <select name="bus_type" id="bus_type" v-model="bus_type" class="form--control">
-                        <option :value="bustype.id" v-for="bustype in bustypes" :key="bustype.id" >{{ bustype.name }}</option>
+                        <option v-for="bustype in bustypes" :key="bustype.id">{{ bustype.name }}</option>
                       </select>
                     </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-4">
+                    <div class="form--group">
+                      <option value="">{{ t('header.from_time') }}</option>
+
+                      <input type="time" name="from_time" class="form--control" v-model="from_time" required
+                        placeholder="Departure Time">
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form--group">
+                      <option value="">{{ t('header.to_time') }}</option>
+
+                      <input type="time" name="to_time" class="form--control" v-model="to_time" required
+                        placeholder="Departure Time">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
                     <div class="form--group">
                       <option value="">{{ t('header.date') }}</option>
 
@@ -72,8 +87,6 @@
                         placeholder="Departure Date" :min="new Date().toISOString().split('T')[0]" autocomplete="off">
                     </div>
                   </div>
-
-
                   <div class="col-md-12">
                     <div class="form--group">
                       <button @click="searchPrivate">{{ t('header.search') }}</button>
@@ -84,7 +97,7 @@
                   <div class="col-md-12">
                     <div class="account-header">
                       <div class="left-content">
-                        <h3 class="title">{{ t('header.private_trip') }} </h3><span>{{ t('header.private_trip_message')
+                        <h3 class="title">{{ t('header.business_trip') }} </h3><span>{{ t('header.business_trip_message')
                         }}</span>
 
 
@@ -94,14 +107,14 @@
                       <span class="list-group-item d-flex bg--base text-white justify-content-between">{{
                         t('header.invoice_details') }}<span>{{ t('header.Info') }}</span></span>
                       <div class="selected-seat-details">
-                        <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.name') }}<span>{{ myPrivate.Details.name }}</span></span>
-                        <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.phone') }}<span>{{ myPrivate.Details.tel_number }}</span></span>
-                        <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.date') }}<span>{{ myPrivate.Details.date }}</span></span>
-                        <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.bus_type') }}<span>{{ myPrivate.bus_type.name }}</span></span>
+                        <span class="list-group-item d-flex justify-content-between">{{ t('header.name') }}<span>{{
+                          myPrivate.Details.name }}</span></span>
+                        <span class="list-group-item d-flex justify-content-between">{{ t('header.phone') }}<span>{{
+                          myPrivate.Details.tel_number }}</span></span>
+                        <span class="list-group-item d-flex justify-content-between">{{ t('header.date') }}<span>{{
+                          myPrivate.Details.date }}</span></span>
+                        <span class="list-group-item d-flex justify-content-between">{{ t('header.bus_type') }}<span>{{
+                          myPrivate.Details.bus_type }}</span></span>
                         <span class="list-group-item d-flex justify-content-between">{{ t('header.From_City') }}<span>{{
                           locale == "ar" ? myPrivate.fromCity.name_ar : myPrivate.fromCity.name }} </span></span>
                         <span class="list-group-item d-flex justify-content-between">{{ t('header.To_City') }}<span>{{
@@ -111,11 +124,11 @@
                           t('header.type') }}<span>{{ t('header.One_way') }}</span></span>
                         <span class="list-group-item d-flex justify-content-between" v-if="type == 'round_trip'">{{
                           t('header.type') }}<span>{{ t('header.One_way') }}</span></span>
-                        <span class="list-group-item d-flex justify-content-between"
-                          v-if="type == 'one_way'"><span>{{ t('header.total') }}</span>{{ myPrivate.oneWay }}
+                        <span class="list-group-item d-flex justify-content-between" v-if="type == 'one_way'"><span>{{
+                          t('header.total') }}</span>{{ myPrivate.oneWay }}
                           {{ t('header.egp') }}</span>
-                        <span class="list-group-item d-flex justify-content-between"
-                          v-if="type == 'round_trip'"><span>{{ t('header.total') }}</span>{{ myPrivate.twoWay }}
+                        <span class="list-group-item d-flex justify-content-between" v-if="type == 'round_trip'"><span>{{
+                          t('header.total') }}</span>{{ myPrivate.twoWay }}
                           {{ t('header.egp') }}</span>
                       </div>
                     </div>
@@ -171,7 +184,7 @@ export default {
       date: '',
       type: '',
       name: '',
-      bus_type: '',
+      bus_type: 'Toyota Hiace 14',
       phone: null,
       locale: localStorage.getItem("userLocale"),
       disabled: true,
@@ -276,6 +289,8 @@ export default {
 }
 </script>
 
-<style>.textArea {
+<style>
+.textArea {
   height: 100px !important;
-}</style>
+}
+</style>

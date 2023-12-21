@@ -4,9 +4,9 @@
         <Navbar />
         <!-- Account Section Starts Here -->
         <div class="padding-top padding-bottom">
-            <div class="container" >
+            <div class="container">
                 <div class="row gx-xl-5 gy-4 gy-sm-5 justify-content-center">
-                    <div class="col-lg-4 col-md-8" >
+                    <div class="col-lg-4 col-md-8">
 
                         <div class="seat-overview-wrapper">
                             <div id="bookingForm" class="row gy-2">
@@ -16,17 +16,42 @@
 
                                 <div class="col-md-12">
                                     <option value="">{{ t('header.From_Station') }}</option>
-                                    <v-select :options="from_city" :reduce="from_city => from_city.id"
-                                        label="station_name_ar" v-model="from_station" required v-if="locale == 'ar'" />
-                                    <v-select :options="from_city" :reduce="fromCity => fromCity.id" label="station_name"
-                                        v-model="from_station" required v-if="locale == 'en'" />
+                            
+
+                                    <v-select :options="FromStation" :reduce="fromStation => fromStation.id"
+                                        label="station_name" v-model="from_station" required>
+                                        <template #option="option" v-if="locale == 'en'">
+                                            <span class="d-flex justify-content-between">
+                                                <span>{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                                <span>{{ option.station_time }}</span>
+                                            </span>
+                                        </template>
+                                        <template #option="option" v-if="locale == 'ar'">
+                                            <span class="d-flex justify-content-between">
+                                                <span dir="rtl">{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                                <span>{{ option.station_name_ar }} </span>
+                                            </span>
+                                        </template>
+                                    </v-select>
+                                 
                                 </div>
                                 <div class="col-md-12">
                                     <option value="">{{ t('header.To_Station') }}</option>
-                                    <v-select :options="to_city" :reduce="toCity => toCity.id" label="station_name_ar"
-                                        v-model="to_station" required v-if="locale == 'ar'" />
-                                    <v-select :options="to_city" :reduce="toCity => toCity.id" label="station_name"
-                                        v-model="to_station" required v-if="locale == 'en'" />
+                                    <v-select :options="ToStation" :reduce="toStation => toStation.id"
+                                        label="station_name" v-model="to_station" required>
+                                        <template #option="option" v-if="locale == 'en'">
+                                            <span class="d-flex justify-content-between">
+                                                <span>{{ option.station_name }} </span>
+                                                <span>{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                            </span>
+                                        </template>
+                                        <template #option="option" v-if="locale == 'ar'">
+                                            <span class="d-flex justify-content-between">
+                                                <span dir="rtl">{{ option.station_time.split('-')[0] }} {{ t('header.'+option.station_time.split('-')[1]) }}</span>
+                                                <span>{{ option.station_name_ar }} </span>
+                                            </span>
+                                        </template>
+                                    </v-select>
                                 </div>
 
                                 <div class="booked-seat-details my-3 d-none">
@@ -46,8 +71,8 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <b class="cancelation_policy">** {{t('header.cancelation_policy')}}</b>
-                                    <p class="cancelation">{{t('header.cancelation_policy_text')}}</p>
+                                    <b class="cancelation_policy">** {{ t('header.cancelation_policy') }}</b>
+                                    <p class="cancelation">{{ t('header.cancelation_policy_text') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +119,7 @@
                                                 <span></span>
                                             </span>
                                         </div>
-                                        <div v-if="seats[2] == 0" >
+                                        <div v-if="seats[2] == 0">
                                             <span class="seat" @click="getSeat(2, 'seatTwo')" id="seatTwo">
                                                 2
                                                 <span></span>
@@ -318,8 +343,8 @@ export default {
     data() {
         return {
             locale: localStorage.getItem("userLocale"),
-            from_city: [],
-            to_city: [],
+            FromStation: [],
+            ToStation: [],
             selected_seats: [],
             seats: {},
             from_station: '',
@@ -374,9 +399,9 @@ export default {
                 );
 
                 if (response.status === 200) {
-                    console.log(response.data);
-                    this.from_city = response.data.data.from_city;
-                    this.to_city = response.data.data.to_city;
+                    console.log(response.data.data.from_city);
+                    this.FromStation = response.data.data.from_city;
+                    this.ToStation = response.data.data.to_city;
                     // Store user data or redirect to the home page
                 } else {
                     // Handle invalid credentials or other errors
@@ -429,8 +454,9 @@ export default {
                 formData.append('booking_seats', this.selected_seats.toString());
                 formData.append('date', this.$route.params.date);
                 formData.append('type', 'web');
+                formData.append('paymentType', 'kashier');
                 try {
-                    const response = await axios.post('https://admin.starbusegypt.com/api/outside/paymnet/store', formData, {
+                    const response = await axios.post('https://admin.starbusegypt.com/api/outside/paymnet/payWithVisa', formData, {
 
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -439,7 +465,7 @@ export default {
 
                     );
 
-                    if (response.status === 200) {
+                    if (response.status) {
                         window.location.href = `${response.data.data}`;
 
                     } else {
@@ -482,6 +508,7 @@ export default {
     border-color: rgb(149 149 149);
     background: rgb(50 50 50);
 }
+
 .seat-for-reserved .seat {
     width: 50px;
     height: 18px;
@@ -492,16 +519,19 @@ export default {
     position: relative;
     margin-right: 10px;
 }
+
 .seat-for-reserved .seat.selected {
- 
+
     background: rgb(21, 209, 49);
 }
+
 .seat-for-reserved .seat.bookedd {
 
     background: rgb(50, 50, 50);
 }
+
 .seat-for-reserved .seat.closed {
-   
+
     background: #ff2929;
 }
 
@@ -514,6 +544,7 @@ export default {
     color: #424248;
     font-size: 16px;
 }
+
 .cancelation {
     color: #ff2929;
     font-size: 14px;

@@ -103,7 +103,18 @@
                     <p class="place">{{ ticket.to.name }}</p>
                   </div>
                 </div>
-                <div class="ticket-item-inner book-ticket">
+                <div class="ticket-item-inner book-ticket"  v-if="ticket.discount > 0">
+                  <del class=" mb-0 mb-3 ">{{ ticket.price }} {{ t('header.egp') }}</del>
+                  <p class="rent mb-0 mb-3 ">{{ ticket.priceAfterDiscount }} {{ t('header.egp') }}</p>
+                  <!-- <div class="seats-left mt-2 mb-3 fs--14px"> {{ t('header.captain') }}: <div
+                      class="d-inline-flex flex-wrap" style="gap:5px;">
+                      <span class="badge badge--primary" v-if="locale == 'en'">{{ ticket.captain.fullname }}</span>
+                      <span class="badge badge--primary" v-if="locale == 'ar'">{{ ticket.captain.fullname_ar }}</span>
+                    </div>
+                  </div> -->
+                  <a class="btn btn--base" @click="chooseSeat(ticket.Schedule_id,ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
+                </div>
+                <div class="ticket-item-inner book-ticket"  v-if="ticket.discount == 0">
                   <p class="rent mb-0 mb-3 ">{{ ticket.price }} {{ t('header.egp') }}</p>
                   <!-- <div class="seats-left mt-2 mb-3 fs--14px"> {{ t('header.captain') }}: <div
                       class="d-inline-flex flex-wrap" style="gap:5px;">

@@ -5,8 +5,10 @@
         <ul class="left-content">
           <li>
             <i class="las la-phone"></i>
-            <span dir="rtl">01121244989 2+</span>
-
+            <span dir="rtl">
+              <a href="tel:+201141387020">01141387020 2+ </a>
+            </span>
+            
           </li>
           <li>
             <i class="las la-envelope-open"></i>

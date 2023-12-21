@@ -62,13 +62,20 @@
                             <h4 class="widget-title">{{t('header.Contact_Info')}}</h4>
                             <ul class="footer-contacts">
                                 <li>
-                                    <i class="las la-map-pin"></i>Nasr City - Cairo - Egypt
+                                    <i class="las la-map-pin mx-1"></i>Nasr City - Cairo - Egypt
                                 </li>
                                 <li>
-                                    <i class="las la-phone-volume"></i> <a href="tel:+2001121244989" dir="rtl">01121244989 20+</a>
+                                    <i class="las la-phone-volume mx-1"></i> 
+                                    <a href="tel:+201141387020">01141387020 2+ </a>
+
                                 </li>
                                 <li>
-                                    <i class="las la-envelope"></i> support@starbus.com
+                                    <i class="las la-phone-volume mx-1"></i> 
+                                    <a href="tel:+201141387030">01141387030 2+ </a>
+
+                                </li>
+                                <li>
+                                    <i class="las la-envelope mx-1"></i> support@starbus.com
                                 </li>
                             </ul>
                         </div>

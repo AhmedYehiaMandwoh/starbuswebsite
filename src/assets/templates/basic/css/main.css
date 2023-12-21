@@ -952,7 +952,7 @@ i {
 }
 
 .logo img {
-    max-width: 200px;
+    max-width: 150px;
     height: 100%;
 }
 
@@ -6236,4 +6236,8 @@ div[class*="col"]:nth-child(3n + 3) .dashboard-widget .dashboard-widget__icon {
   .vue-tel-input {
     border-radius: 4px !important;
     border: 1px solid #e8e9eb !important;
+  }
+
+  .shape img {
+    width: 160px;
   }

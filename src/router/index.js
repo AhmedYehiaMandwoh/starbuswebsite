@@ -50,6 +50,22 @@ const router = createRouter({
       },
     },
     {
+      path: '/home/business',
+      name: 'Business',
+
+      component: () => import('../views/Business.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: "Business",
+        breadcrumb: [
+          {
+            text: "Business",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/home/signin',
       name: 'signin',
       // route level code-splitting
