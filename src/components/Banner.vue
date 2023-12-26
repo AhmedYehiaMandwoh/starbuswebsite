@@ -78,7 +78,7 @@ export default {
       const token = localStorage.getItem('access_token');
 
       // Make a request to the API to get all permissions.
-      const response = await axios.get('https://admin.starbusegypt.com/api/outside/cities/getAllCities', {
+      const response = await axios.get(' https://admin.starbusegypt.com/api/outside/cities/getAllCities', {
         headers: {
           Authorization: `Bearer ${token}`
         }

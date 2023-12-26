@@ -103,7 +103,7 @@ const router = createRouter({
       },
     },
     {
-      path: '/home/ticket/details-seat/:date/:schedule_id/:route_id/:from/:to/:uuid',
+      path: '/home/ticket/details-seat/:date/:ride_id/:schedule_id/:route_id/:from/:to/:uuid',
       name: 'ticket',
       component: () => import('../views/TicketDetails.vue'),
       meta: {

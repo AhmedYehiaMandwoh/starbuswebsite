@@ -36,9 +36,9 @@
                   <div class="col-md-6">
                     <div class="form--group">
                       <label for="remember">{{ t('header.type') }}</label>
-                      <select name="type" id="type" class="form--control" v-model="type" required>
-                        <option value="one_way">{{ t('header.One_way') }}</option>
-                        <option value="round_trip">{{ t('header.Round_Trip') }}</option>
+                      <select name="type" id="type" class="form--control" v-model="TripType" required>
+                        <option value="oneWay">{{ t('header.One_way') }}</option>
+                        <option value="roundTrip">{{ t('header.Round_Trip') }}</option>
                       </select>
                     </div>
                   </div>
@@ -95,27 +95,27 @@
                         t('header.invoice_details') }}<span>{{ t('header.Info') }}</span></span>
                       <div class="selected-seat-details">
                         <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.name') }}<span>{{ myPrivate.Details.name }}</span></span>
+                          class="list-group-item d-flex justify-content-between">{{ t('header.name') }}<span>{{ myPrivate.user.name }}</span></span>
                         <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.phone') }}<span>{{ myPrivate.Details.tel_number }}</span></span>
+                          class="list-group-item d-flex justify-content-between">{{ t('header.phone') }}<span>{{ myPrivate.user.tel_number }}</span></span>
                         <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.date') }}<span>{{ myPrivate.Details.date }}</span></span>
+                          class="list-group-item d-flex justify-content-between">{{ t('header.date') }}<span>{{ myPrivate.user.date }}</span></span>
                         <span
-                          class="list-group-item d-flex justify-content-between">{{ t('header.bus_type') }}<span>{{ myPrivate.bus_type.name }}</span></span>
+                          class="list-group-item d-flex justify-content-between">{{ t('header.bus_type') }}<span>{{ myPrivate.private.bus_types.name }}</span></span>
                         <span class="list-group-item d-flex justify-content-between">{{ t('header.From_City') }}<span>{{
-                          locale == "ar" ? myPrivate.fromCity.name_ar : myPrivate.fromCity.name }} </span></span>
+                          locale == "ar" ? myPrivate.private.from_city.name_ar : myPrivate.private.from_city.name }} </span></span>
                         <span class="list-group-item d-flex justify-content-between">{{ t('header.To_City') }}<span>{{
-                          locale == "ar" ? myPrivate.toCity.name_ar : myPrivate.toCity.name }} </span></span>
+                          locale == "ar" ? myPrivate.private.to_city.name_ar : myPrivate.private.to_city.name }} </span></span>
 
                         <span class="list-group-item d-flex justify-content-between" v-if="type == 'one_way'">{{
                           t('header.type') }}<span>{{ t('header.One_way') }}</span></span>
                         <span class="list-group-item d-flex justify-content-between" v-if="type == 'round_trip'">{{
                           t('header.type') }}<span>{{ t('header.One_way') }}</span></span>
                         <span class="list-group-item d-flex justify-content-between"
-                          v-if="type == 'one_way'"><span>{{ t('header.total') }}</span>{{ myPrivate.oneWay }}
+                          v-if="type == 'one_way'"><span>{{ t('header.total') }}</span>{{ myPrivate.private.oneWay }}
                           {{ t('header.egp') }}</span>
                         <span class="list-group-item d-flex justify-content-between"
-                          v-if="type == 'round_trip'"><span>{{ t('header.total') }}</span>{{ myPrivate.twoWay }}
+                          v-if="type == 'round_trip'"><span>{{ t('header.total') }}</span>{{ myPrivate.private.twoWay }}
                           {{ t('header.egp') }}</span>
                       </div>
                     </div>
@@ -172,6 +172,8 @@ export default {
       type: '',
       name: '',
       bus_type: '',
+      TripType: '',
+      type: 'web',
       phone: null,
       locale: localStorage.getItem("userLocale"),
       disabled: true,
@@ -186,7 +188,7 @@ export default {
       const token = localStorage.getItem('access_token');
 
       // Make a request to the API to get all permissions.
-      const response = await axios.get('https://admin.starbusegypt.com/api/outside/cities/getAllCities', {
+      const response = await axios.get(' https://admin.starbusegypt.com/api/outside/cities/getAllCities', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -199,7 +201,7 @@ export default {
       const token = localStorage.getItem('access_token');
 
       // Make a request to the API to get all permissions.
-      const response = await axios.get('https://admin.starbusegypt.com/api/outside/bussiness/getBusTypes', {
+      const response = await axios.get(' https://admin.starbusegypt.com/api/outside/bussiness/getBusTypes', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -223,9 +225,11 @@ export default {
         formData.append('tel_number', this.phone);
         formData.append('date', this.date);
         formData.append('bus_type', this.bus_type);
+        formData.append('TripType', this.TripType);
+        formData.append('type', this.type);
 
         try {
-          const response = await axios.post('https://admin.starbusegypt.com/api/outside/private/searchPrivateBus', formData, {
+          const response = await axios.post('https://admin.starbusegypt.com/api/outside/private/search', formData, {
 
             headers: {
               Authorization: `Bearer ${token}`
@@ -235,6 +239,7 @@ export default {
           );
 
           if (response.status === 200) {
+            console.log(response.data.data);
             if (response.data.data !== null) {
               this.myPrivate = response.data.data
               this.showPRiavte = true;

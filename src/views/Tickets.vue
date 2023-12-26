@@ -112,7 +112,7 @@
                       <span class="badge badge--primary" v-if="locale == 'ar'">{{ ticket.captain.fullname_ar }}</span>
                     </div>
                   </div> -->
-                  <a class="btn btn--base" @click="chooseSeat(ticket.Schedule_id,ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
+                  <a class="btn btn--base" @click="chooseSeat(ticket.ride_id,ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
                 </div>
                 <div class="ticket-item-inner book-ticket"  v-if="ticket.discount == 0">
                   <p class="rent mb-0 mb-3 ">{{ ticket.price }} {{ t('header.egp') }}</p>
@@ -122,7 +122,7 @@
                       <span class="badge badge--primary" v-if="locale == 'ar'">{{ ticket.captain.fullname_ar }}</span>
                     </div>
                   </div> -->
-                  <a class="btn btn--base" @click="chooseSeat(ticket.Schedule_id,ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
+                  <a class="btn btn--base" @click="chooseSeat(ticket.ride_id,ticket.Schedule_id,ticket.Route_id,ticket.from.id,ticket.to.id,ticket.uuid)">{{ t('header.Select_Seat') }}</a>
                 </div>
 
               </div>
@@ -184,7 +184,7 @@ export default {
       formData.append('to', this.$route.params.to);
       formData.append('date', this.$route.params.date);
       try {
-        const response = await axios.post('https://admin.starbusegypt.com/api/outside/searchRide/get', formData, {
+        const response = await axios.post(' https://admin.starbusegypt.com/api/outside/searchRide/get', formData, {
 
           headers: {
             Authorization: `Bearer ${token}`
@@ -208,8 +208,8 @@ export default {
         console.error(error);
       }
     },
-    chooseSeat(schedule_id,route_id,from,to,uuid) {
-      this.$router.push("/home/ticket/details-seat/" +this.$route.params.date +"/"+ schedule_id +"/"+ route_id+ "/" + from +"/"+ to +"/"+ uuid);
+    chooseSeat(ride_id,schedule_id,route_id,from,to,uuid) {
+      this.$router.push("/home/ticket/details-seat/" +this.$route.params.date +"/"+ ride_id  +"/"+ schedule_id +"/"+ route_id+ "/" + from +"/"+ to +"/"+ uuid);
 
     }
   },

@@ -171,7 +171,7 @@ export default {
     async signUp() {
       console.log(this.tel_number);
       try {
-        const response = await axios.post('https://admin.starbusegypt.com/api/outside/signup', {
+        const response = await axios.post(' https://admin.starbusegypt.com/api/outside/signup', {
           name: this.name,
           tel_number: this.tel_number,
           gender: this.gender,
@@ -221,7 +221,7 @@ export default {
     async getAllCountries() {
      
       try {
-        const response = await axios.get('https://admin.starbusegypt.com/api/outside/countries/getAllCountries');
+        const response = await axios.get(' https://admin.starbusegypt.com/api/outside/countries/getAllCountries');
 
         if (response.status === 200) {
           this.all_countries = response.data.countries

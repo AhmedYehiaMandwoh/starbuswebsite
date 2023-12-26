@@ -280,7 +280,7 @@
                                     </div>
                                     <div class="right-side">
                                         <div v-if="seats[12] == 0">
-                                            <span class="seat" @click="getSeat(12, 'seatEleven')" id="seatEleven">
+                                            <span class="seat" @click="getSeat(12, 'seatTweleve')" id="seatTweleve">
                                                 12
                                                 <span></span>
                                             </span>
@@ -371,8 +371,8 @@ export default {
             const token = localStorage.getItem('access_token');
 
             let formData = new FormData();
-            formData.append('route_id', this.$route.params.route_id);
-            formData.append('schedule_id', this.$route.params.schedule_id);
+            formData.append('ride_id', this.$route.params.ride_id);
+            formData.append('date', this.$route.params.date);
             try {
                 const response = await axios.post('https://admin.starbusegypt.com/api/outside/RideBusSeats/getBusSeatsByScheduleInRoute', formData, {
 
@@ -403,7 +403,7 @@ export default {
             formData.append('fromCity', this.$route.params.from);
             formData.append('toCity', this.$route.params.to);
             try {
-                const response = await axios.post('https://admin.starbusegypt.com/api/outside/searchRide/get-station', formData, {
+                const response = await axios.post(' https://admin.starbusegypt.com/api/outside/searchRide/get-station', formData, {
 
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -470,7 +470,7 @@ export default {
                 formData.append('type', 'web');
                 formData.append('paymentType', 'kashier');
                 try {
-                    const response = await axios.post('https://admin.starbusegypt.com/api/outside/paymnet/payWithVisa', formData, {
+                    const response = await axios.post(' https://admin.starbusegypt.com/api/outside/paymnet/payWithVisa', formData, {
 
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -480,6 +480,7 @@ export default {
                     );
 
                     if (response.status) {
+                        console.log(response.data);
                         window.location.href = `${response.data.data}`;
 
                     } else {
