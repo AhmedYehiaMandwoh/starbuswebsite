@@ -40,12 +40,11 @@
                                                         <span class="ticket_number_text">{{ ticket.time }}</span><br>
                                                         <span class="ticket_number_text">{{ t('header.ticket_number')
                                                         }}</span><br>
-                                                        <span class="ticket_number"><b>{{ ticket.ticket_number }}</b>
-                                                        </span>
+                                                      
                                                     </td>
 
                                                     <td>
-                                                        <div class="cs-invoice_btns cs-hide_print">
+                                                        <div class="cs-invoice_btns cs-hide_print mb-3">
                                                             <a href="javascript:window.print()"
                                                                 class="cs-invoice_btn cs-color1">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon"
@@ -67,6 +66,8 @@
                                                                 <span>Print</span>
                                                             </a>
                                                         </div>
+                                                        <span class="ticket_number"><b>{{ ticket.ticket_number }}</b>
+                                                        </span>
                                                     </td>
 
                                                 </tr>
@@ -101,39 +102,33 @@
                                 </tr>
 
                                 <tr class="details">
-                                    <td>paymob (visa)</td>
 
                                     <td>{{ ticket.status }}</td>
+                                    <td>kashier (visa)</td>
                                 </tr>
 
                                 <tr class="heading">
-                                    <td>Item</td>
 
                                     <td></td>
+                                    <td>{{t('header.total')}}</td>
                                 </tr>
 
                                 <tr class="item">
+
                                     <td>{{ t('header.price') }}</td>
-
-                                    <td>$300.00</td>
+                                    <td>{{ ticket.route_price / ticket.passengers }} {{ t('header.egp') }}</td>
                                 </tr>
 
                                 <tr class="item">
-                                    <td>Hosting (3 months)</td>
+                                    <td>{{ t('header.seats') }}</td>
+                                    <td>{{ ticket.passengers }} x</td>
 
-                                    <td>$75.00</td>
-                                </tr>
-
-                                <tr class="item last">
-                                    <td>Domain name (1 year)</td>
-
-                                    <td>$10.00</td>
                                 </tr>
 
                                 <tr class="total">
-                                    <td></td>
 
-                                    <td>{{ t('header.total') }}: {{ ticket.route_price }} {{ t('header.egp') }}</td>
+                                    <td>{{ t('header.total') }}</td>
+                                    <td>{{ ticket.route_price }} {{ t('header.egp') }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -167,7 +162,7 @@
                                                 <tr>
 
                                                     <td>
-                                                        <div class="cs-invoice_btns cs-hide_print">
+                                                        <div class="cs-invoice_btns cs-hide_print mb-3">
                                                             <a href="javascript:window.print()"
                                                                 class="cs-invoice_btn cs-color1">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon"
@@ -189,13 +184,13 @@
                                                                 <span>Print</span>
                                                             </a>
                                                         </div>
+                                                        <span class="ticket_number"><b>{{ ticket.ticket_number }}</b></span>
                                                     </td>
                                                     <td>
                                                         <span class="ticket_number_text">{{ ticket.time }}</span><br>
                                                         <span class="ticket_number_text">{{ t('header.ticket_number')
                                                         }}</span><br>
-                                                        <span class="ticket_number"><b>{{ ticket.ticket_number }}</b>
-                                                        </span>
+                                                       
                                                     </td>
 
                                                 </tr>
@@ -232,18 +227,18 @@
                                 <tr class="details">
 
                                     <td>{{ ticket.status }}</td>
-                                    <td>paymob (visa)</td>
+                                    <td>kashier (visa)</td>
                                 </tr>
 
                                 <tr class="heading">
 
                                     <td></td>
-                                    <td>Item</td>
+                                    <td>{{t('header.total_invoice')}}</td>
                                 </tr>
 
                                 <tr class="item">
 
-                                    <td>{{ticket.route_price / ticket.passengers}} {{ t('header.egp') }}</td>
+                                    <td>{{ ticket.route_price / ticket.passengers }} {{ t('header.egp') }}</td>
                                     <td>{{ t('header.price') }}</td>
                                 </tr>
 
@@ -313,7 +308,7 @@ export default {
                 );
 
                 if (response.status === 200) {
-                    
+
                     this.ticket = response.data.data
                     this.from_city = response.data.data.fromCity
                     this.to_city = response.data.data.toCity

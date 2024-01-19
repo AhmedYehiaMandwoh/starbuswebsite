@@ -3,12 +3,15 @@
       "en": "English",
       "ar": "Arabic"
     },
+    "AM": "AM",
+    "PM": "PM",
     "header": {
       "AM": "AM",
       "PM": "PM",
       "choose": "choose..",
       "new_account": "Create new account",
       "home": "Home",
+      "contact_us": "Conact Us",
       "about": "About us",
       "get_ticket": "Get Your Ticket Online, Easy and Safely",
       "choose_ticket": "Choose Your Ticket",
@@ -92,6 +95,7 @@
       "aboutStar" : "About starbus company",
       "status" : "Status",
       "bus_type" : "Bus Type",
+      "total_invoice" : "Total Invoice",
       "search" : "Search",
       "notes" : "Notes",
       "invoice_details" : "Invoice Details",

@@ -6,13 +6,17 @@
           <li>
             <i class="las la-phone"></i>
             <span dir="rtl">
-              <a href="tel:+201141387020">01141387020 2+ </a>
+              <a href="tel:+201141387020">{{t('header.contact_us')}}</a>
             </span>
             
           </li>
           <li>
             <i class="las la-envelope-open"></i>
-            <span class="">support@starbus.com</span>
+            <span class="">
+              <a href="mailto:info@starbusegypt.com">info@starbusegypt.com</a>
+
+              
+            </span>
 
           </li>
         </ul>
