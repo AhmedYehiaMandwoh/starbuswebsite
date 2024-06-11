@@ -298,7 +298,7 @@ export default {
             let formData = new FormData();
             formData.append('uuid', this.$route.params.uuid);
             try {
-                const response = await axios.post('https://admin.starbusegypt.com/api/outside/paymnet/BookingTicketForUser', formData, {
+                const response = await axios.post('https://starbusegypt.info/api/outside/paymnet/BookingTicketForUser', formData, {
 
                     headers: {
                         Authorization: `Bearer ${token}`
